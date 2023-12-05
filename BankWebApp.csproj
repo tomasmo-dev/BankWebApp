@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0-preview3.23201.1" />
   </ItemGroup>
 

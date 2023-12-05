@@ -33,7 +33,7 @@ create table Users
 create table BankAccount
 (
     Id            int identity(1,1) primary key,
-    AccountNumber varchar(50)       not null,
+    AccountNumber varchar(50)       not null, -- gonne be generated using c# guids
     Balance       decimal default 0 not null,
     UserId        int               not null,
     constraint FK_UserId

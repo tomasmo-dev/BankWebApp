@@ -1,3 +1,5 @@
+using BankWebApp.Services;
+
 namespace BankWebApp
 {
     public class Program
@@ -8,7 +10,24 @@ namespace BankWebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddSingleton<MySignInManager>();
 
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "custom";
+                options.DefaultSignInScheme = "custom";
+                options.DefaultSignOutScheme = "custom";
+                options.DefaultChallengeScheme = "custom";
+            })
+                .AddCookie("custom", options =>
+            {
+                options.LoginPath = "/Home/Login";
+                options.LogoutPath = "/Home/Logout";
+                options.AccessDeniedPath = "/Home/AccessDenied";
+            });
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
