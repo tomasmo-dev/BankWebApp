@@ -1,29 +1,109 @@
 ﻿using BankWebApp.Models;
+using BankWebApp.Tools;
 
-namespace BankWebApp.Services;
-
-public class UserService
+namespace BankWebApp.Services
 {
-    private readonly DatabaseService _databaseService;
+    /// <summary>
+    /// Service class for managing users.
+    /// </summary>
+    public class UserService
+    {
+        private readonly DatabaseService _databaseService;
 
-    private DateTime _lastUpdateAt;
-    
-    private IList<UserModel> _users;
-    private TimeSpan _cacheDuration = TimeSpan.FromMinutes(1);
-    
-    public UserService()
-    {
-        _databaseService = new DatabaseService();
-    }
-    
-    public IList<UserModel> GetUsers()
-    {
-        if (_users == null || (_lastUpdateAt + _cacheDuration) < DateTime.Now)
+        private DateTime _lastUpdateAt;
+
+        private IList<UserModel>? _users = null;
+        private readonly TimeSpan _cacheDuration = TimeSpan.FromMinutes(1);
+
+        /// <summary>
+        /// Constructor for UserService. Initializes a new instance of the DatabaseService and refreshes the cache.
+        /// </summary>
+        public UserService()
+        {
+            _databaseService = new DatabaseService();
+            RefreshCache();
+        }
+
+        /// <summary>
+        /// Retrieves the list of users. If the cache is null or expired, it refreshes the cache before returning the users.
+        /// </summary>
+        /// <returns>A list of UserModel instances.</returns>
+        public IList<UserModel> GetUsers()
+        {
+            if (_users == null || (_lastUpdateAt + _cacheDuration) < DateTime.Now)
+            {
+                RefreshCache();
+            }
+
+            return _users!;
+        }
+
+        /// <summary>
+        /// Refreshes the cache by retrieving the users from the database and updating the last update time.
+        /// </summary>
+        private void RefreshCache()
         {
             _users = _databaseService.GetUsers();
             _lastUpdateAt = DateTime.Now;
         }
+        
+        public UserModel? GetUserById(int id)
+        {
+            return _users?.FirstOrDefault(user => user.Id == id);
+        }
+        
+        public UserModel? GetUserByUsername(string username)
+        {
+            return _users?.FirstOrDefault(user => user.Username == username);
+        }
 
-        return _users;
+        public (bool success, string reason) RegisterUser(RegisterModel newUser)
+        {
+            bool existCheck = _databaseService.UsernameExists(newUser.Username);
+            if (existCheck)
+            {
+                return (false, "Username already exists");
+            }
+            
+            bool passwordMatches = (newUser.Password == newUser.ConfirmPassword);
+            if (!passwordMatches)
+            {
+                return (false, "Passwords do not match");
+            }
+            
+            var NewUser = new UserModel()
+            {
+                // Id auto generated
+                Username = newUser.Username,
+                PasswordHash = newUser.Password.HashPassword(),
+                Contact = new ContactModel()
+                {
+                    // Id auto generated
+                    Email = newUser.Email,
+                    PhoneNumber = newUser.PhoneNumber
+                },
+                Address = new AddressModel()
+                {
+                    // Id auto generated
+                    Street = newUser.Street,
+                    City = newUser.City,
+                    PostCode = newUser.PostCode,
+                    Country = newUser.Country
+                }
+                // CreatedAt auto generated
+            };
+            
+            var registerCheck = _databaseService.RegisterUser(NewUser);
+
+            if (registerCheck)
+            {
+                RefreshCache();
+                return (true, "");
+            }
+            else
+            {
+                return (false, "Something went wrong during the registering process");
+            }
+        }
     }
 }
