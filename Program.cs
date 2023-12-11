@@ -13,6 +13,7 @@ namespace BankWebApp
             builder.Services.AddSingleton<UserService>();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddSingleton<MySignInManager>();
+            builder.Services.AddSingleton<TransferService>();
 
             builder.Services.AddAuthentication(options =>
             {

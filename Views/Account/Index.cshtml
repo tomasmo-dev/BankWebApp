@@ -9,3 +9,21 @@
 <div class="text-center">
     <h1 class="display-4">Welcome @Model.SignedInUser.Username</h1>
 </div>
+
+<br/>
+
+<hr/>
+
+<br/>
+
+<div class="container">
+    @foreach(var account in Model.BankAccounts)
+    {
+        <div>
+            <h4>Bank Account Number: <span class="text-capitalize">@account.AccountNumber</span></h4>
+            <h5>Balance: <span class="text-capitalize">@account.Balance</span></h5>
+        </div>
+        <hr/>
+        <br/>
+    }
+</div>

@@ -1,13 +1,13 @@
-﻿@{
+﻿@using System.Security.Claims
+@{
     var controller = ViewContext.RouteData.Values["controller"]!;
     var action = ViewContext.RouteData.Values["action"]!;
     
     var loggedIn = User.Identity != null && User.Identity.IsAuthenticated;
 }
-
 @if (!loggedIn) {
     
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 nav-tabs">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 nav-underline">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BankWebApp</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -35,7 +35,7 @@
 }
 else
 {
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 nav-pills">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 nav-underline">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BankWebApp</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -47,6 +47,15 @@ else
                     <li class="nav-item">
                         <a class="nav-link text-dark @(controller.Equals("Account") && action.Equals("Index") ? "active" : "")" asp-area="" asp-controller="Account" asp-action="Index">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark @(controller.Equals("Account") && action.Equals("Transfer") ? "active" : "")" asp-area="" asp-controller="Account" asp-action="Transfer">Transfer</a>
+                    </li>
+                    @if (User.HasClaim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", "Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @(controller.Equals("Account") && action.Equals("AddFunds") ? "active" : "")" asp-area="" asp-controller="Account" asp-action="AddFunds">Add Funds</a>
+                        </li>
+                    }
                     <li>
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
                     </li>

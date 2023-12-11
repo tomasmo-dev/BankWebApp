@@ -105,5 +105,36 @@ namespace BankWebApp.Services
                 return (false, "Something went wrong during the registering process");
             }
         }
+        
+        /// <summary>
+        /// Gets the bank accounts of a user by their id.
+        /// </summary>
+        /// <param name="uid">The User Id of the owner</param>
+        /// <returns>A List of BankAccounts that the user owns</returns>
+        public IList<BankAccountModel> GetBankAccountsById(int uid)
+        {
+            return _databaseService.GetBankAccountById(uid);
+        }
+        
+        /// <summary>
+        /// Gets the bank account of a user by its account number.
+        /// </summary>
+        /// <param name="id">the bank account numebr to search for ( unique )</param>
+        /// <returns>the specific bank account</returns>
+        public BankAccountModel? GetBankAccountsById(string id)
+        {
+            return _databaseService.GetBankAccountById(id);
+        }
+        
+        public IList<BankAccountModel> GetAllBankAccounts()
+        {
+            return _databaseService.GetAllBankAccounts();
+        }
+        
+        public IList<RolesModel> GetRolesById(int uid)
+        {
+            return _databaseService.GetRolesById(uid);
+        }
+        
     }
 }

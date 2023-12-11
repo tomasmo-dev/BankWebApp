@@ -1,4 +1,6 @@
-﻿USE [FakeBank];
+﻿CREATE DATABASE FakeBank;
+
+USE [FakeBank];
 
 create table Addresses
 (
@@ -19,11 +21,11 @@ create table Contacts
 create table Users
 (
     Id           int identity(1,1) primary key,
-    Username     varchar(50) not null,
-    PasswordHash text        not null,
-    CreatedAt    datetime    not null,
-    ContactId    int         not null,
-    AddressId    int         not null,
+    Username     varchar(50)  not null,
+    PasswordHash varchar(max) not null,
+    CreatedAt    datetime     not null,
+    ContactId    int          not null,
+    AddressId    int          not null,
     constraint FK_AddressId
         foreign key (AddressId) references Addresses (Id),
     constraint FK_ContactId
@@ -33,7 +35,7 @@ create table Users
 create table BankAccount
 (
     Id            int identity(1,1) primary key,
-    AccountNumber varchar(50)       not null, -- gonne be generated using c# guids
+    AccountNumber varchar(50)       not null, -- gonna be generated using c# guids
     Balance       decimal default 0 not null,
     UserId        int               not null,
     constraint FK_UserId
@@ -55,6 +57,19 @@ create table Transactions
     constraint FK_SenderId
         foreign key (SenderId) references BankAccount (Id)
 );
+
+CREATE TABLE UserRoles
+(
+    Id       int identity(1,1) primary key,
+    
+    UserId   int              not null,
+    RoleName varchar(50)      not null
+
+    FOREIGN KEY (UserId) REFERENCES Users (Id)
+);
+
+create index UserId2_idx
+    on UserRoles (UserId);
 
 create index ReceiverId_idx
     on Transactions (ReceiverId);
