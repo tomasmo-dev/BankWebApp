@@ -1,0 +1,50 @@
+﻿@model AddFundsViewModel
+@{
+    ViewData["Title"] = "Add Funds";
+}
+
+<h1>Add Funds</h1>
+
+<p>
+    This is an Admin only page. Only admins can add funds to a bank account.
+    Mainly for testing purposes.
+</p>
+
+<br/>
+<hr/>
+<br/>
+
+@if (Model.Success != null && Model.Success.HasValue)
+{
+    @if (Model.Success.Value)
+    {
+        <div class="alert alert-success">
+            <strong>Success</strong> You have successfully funds.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <strong>Error</strong> An error occurred while adding funds.
+            @(Model.Reason ?? "nothing found")
+        </div>
+    }
+}
+
+<form class="p-5" asp-action="AddFunds" method="post">
+    <label class="form-label" for="SelectedBankAccount">Select a bank account to add funds to</label>
+    <select class="form-control" name="SelectedBankAccountNumber" id="SelectedBankAccount" asp-for="SelectedBankAccountNumber">
+        <option class="disabled" value="" disabled aria-disabled="true">Select a bank account</option>
+        @foreach(var account in Model.BankAccounts)
+        {
+            <option value="@account.AccountNumber">@account.User.Username - @account.AccountNumber</option>
+        }
+    </select>
+    <br/>
+    
+    <label for="Amount">Amount</label>
+    <input class="form-control" type="text" name="Amount" id="Amount" placeholder="Money Amount" asp-for="Amount"/>
+    
+    <br/>
+    <button class="form-control" type="submit">Add Funds</button>
+</form>

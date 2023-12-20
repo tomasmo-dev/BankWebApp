@@ -1,0 +1,45 @@
+﻿@model IList<ListUsersViewModel>
+
+@{
+    ViewData["Title"] = "List Users";
+}
+
+<h1>List Users</h1>
+
+<br/>
+<hr/>
+
+<div class="container" >
+    <table class="table table-light table-responsive table-bordered">
+        <tr>
+            <th>Username</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Post Code</th>
+            <th>Created At</th>
+            <th></th>
+        </tr>
+        
+        @foreach(var user in Model)
+        {
+            <tr>
+                <td>@user.UserModel.Username</td>
+                <td>@user.UserModel.Contact.Email</td>
+                <td>@user.UserModel.Contact.PhoneNumber</td>
+                <td>@user.UserModel.Address.Street</td>
+                <td>@user.UserModel.Address.City</td>
+                <td>@user.UserModel.Address.Country</td>
+                <td>@user.UserModel.Address.PostCode</td>
+                <td>@user.UserModel.CreatedAt</td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Show" asp-route-id="@user.UserModel.Id">Show</a>
+                    <!-- TODO? <a class="btn btn-danger" asp-action="Delete" asp-route-id="@user.UserModel.Id">Delete</a>-->
+                </td>
+            </tr>
+        }
+        
+    </table>
+</div>

@@ -1,0 +1,65 @@
+﻿@* 
+This view is used for transferring money between accounts. It uses the TransferViewModel as its model.
+*@
+
+@model TransferViewModel
+
+@* 
+Set the title of the view to "Transfer"
+*@
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+<h1>Transfer</h1>
+
+@* 
+Check if the transfer was successful or not and display a message accordingly.
+*@
+@if (Model.Success != null && Model.Success.HasValue)
+{
+    if (Model.Success.Value)
+    {
+        <div class="alert alert-success alert-light" role="alert">
+            <strong>Success!</strong> Transfer was successful.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            <strong>Error!</strong> An error occurred while transferring.
+            @(Model.Reason ?? "nothing found")
+        </div>
+    }
+}
+
+@* 
+Create a form for the transfer operation. The form will be posted to the "Transfer" action.
+*@
+<form class="p-5" method="post" asp-action="Transfer">
+    <label class="form-label" for="fromacc">From Account</label>
+    <select class="form-control form-select" name="FromAccountId" id="fromacc" asp-for="FromAccountId">
+        <option class="disabled" value="" disabled aria-disabled="true">Select from which bank account to transfer</option>
+        @* 
+        Populate the dropdown with the account numbers from the model.
+        *@
+        @foreach (var account in Model.BankAccounts)
+        {
+            <option value="@account.AccountNumber">@account.AccountNumber</option>
+        }
+    </select>
+    <br/>
+    <hr/>
+
+    <label class="form-label" for="toacc">To Account Number</label>
+    <input class="form-control" type="text" name="ToAccountId" id="toacc" placeholder="Account number to transfer to"/>
+    <br/>
+    <hr/>
+
+    <label class="form-label" for="amount">Amount</label>
+    <input class="form-control" type="number" name="Amount" id="amount" placeholder="Amount to transfer"/>
+
+    <br/>
+
+    <button class="form-control" type="submit">Transfer</button>
+</form>

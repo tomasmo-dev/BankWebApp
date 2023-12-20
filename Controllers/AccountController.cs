@@ -190,6 +190,26 @@ public class AccountController : Controller
     [Authorize(Roles = "Admin")]
     public IActionResult Show(string id)
     {
-        return View();
+        if (!int.TryParse(id, out _))
+        {
+            return Problem("Invalid user id. (must be of type int)");
+        }
+
+        var user = _userService.GetUserById(int.Parse(id));
+        var bankAccounts = _userService.GetBankAccountsById(user!.Id);
+        
+        var model = new ListUsersViewModel()
+        {
+            UserModel = user,
+            BankAccounts = bankAccounts
+        };
+        
+        
+        return View(model);
+    }
+
+    public IActionResult Delete()
+    {
+        throw new NotImplementedException();
     }
 }

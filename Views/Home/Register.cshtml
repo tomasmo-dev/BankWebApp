@@ -1,74 +1,90 @@
-﻿@model RegisterModel
+﻿<!-- This view is used for registering a new user -->
+@model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Register"; // Sets the title of the view to "Register"
 }
 
-<h1>Register</h1>
+<h1>Register</h1> // Heading of the page
 
-<hr/>
+<hr/> // Horizontal line for visual separation
 
+// Checks if the model is not null and if it has a value for Success
 @if (Model != null && Model.Success.HasValue)
 {
+    // If the registration was successful
     if (Model.Success.Value)
     {
+        // Display a success message
         <div class="alert alert-success" role="alert">
             <strong>Success!</strong> You have successfully registered.
         </div>
     }
     else
     {
+        // If the registration was not successful, display an error message
         <div class="alert alert-danger" role="alert">
             <strong>Error!</strong> An error occurred while registering.
-            @(Model.Reason ?? "nothing found")
+            @(Model.Reason ?? "nothing found") // Display the reason for the error, if any
         </div>
     }
 }
 
+// Form for registration
 <form asp-controller="Home" asp-action="Register" method="post">
+    // Input field for username
     <div class="form-group">
         <label asp-for="Username"></label>
         <input asp-for="Username" class="form-control" />
     </div>
 
+    // Input field for password
     <div class="form-group">
         <label asp-for="Password"></label>
         <input asp-for="Password" type="password" class="form-control" />
     </div>
 
+    // Input field for confirming password
     <div class="form-group">
         <label asp-for="ConfirmPassword"></label>
         <input asp-for="ConfirmPassword" type="password" class="form-control" />
     </div>
 
+    // Input field for email
     <div class="form-group">
         <label asp-for="Email"></label>
         <input asp-for="Email" class="form-control" />
     </div>
 
+    // Input field for phone number
     <div class="form-group">
         <label asp-for="PhoneNumber"></label>
         <input asp-for="PhoneNumber" class="form-control" />
     </div>
 
+    // Input field for street
     <div class="form-group">
         <label asp-for="Street"></label>
         <input asp-for="Street" class="form-control" />
     </div>
 
+    // Input field for city
     <div class="form-group">
         <label asp-for="City"></label>
         <input asp-for="City" class="form-control" />
     </div>
 
+    // Input field for postcode
     <div class="form-group">
         <label asp-for="PostCode"></label>
         <input asp-for="PostCode" class="form-control" />
     </div>
 
+    // Input field for country
     <div class="form-group">
         <label asp-for="Country"></label>
         <input asp-for="Country" class="form-control" />
     </div>
 
+    // Submit button for the form
     <button type="submit" class="btn btn-primary">Register</button>
 </form>

@@ -1,29 +1,43 @@
 ﻿@model LoginModel
 @{
+    // Set the title of the page to "Login"
     ViewData["Title"] = "Login";
 }
 
 <h1>Login</h1>
 
+<!-- Start of the login form -->
 <form asp-controller="Home" asp-action="Login" method="post">
+    <!-- Display validation errors -->
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <!-- Username input field -->
     <div class="form-group">
         <label asp-for="Username" class="control-label"></label>
         <input asp-for="Username" class="form-control" />
+        <!-- Display validation errors for the username field -->
         <span asp-validation-for="Username" class="text-danger"></span>
     </div>
+    
+    <!-- Password input field -->
     <div class="form-group">
         <label asp-for="Password" class="control-label"></label>
         <input asp-for="Password" class="form-control" type="password" />
+        <!-- Display validation errors for the password field -->
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
+    
+    <!-- Remember me checkbox -->
     <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" asp-for="RememberMe" />
-                <label class="form-check-label" asp-for="RememberMe">Remember me</label>
-            </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" asp-for="RememberMe" />
+            <label class="form-check-label" asp-for="RememberMe">Remember me</label>
         </div>
+    </div>
+    
+    <!-- Login button -->
     <div class="form-group">
         <input type="submit" value="Login" class="btn btn-primary" />
     </div>
 </form>
+<!-- End of the login form -->

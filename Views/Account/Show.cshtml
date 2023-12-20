@@ -1,0 +1,79 @@
+﻿@model ListUsersViewModel
+@{
+    ViewData["Title"] = "Show User";
+}
+
+<h1>Show User</h1>
+
+<br/>
+<hr/>
+
+<!-- Back button to list users -->
+<a class="btn btn-primary" asp-action="ListUsers">Back</a>
+
+
+<div class="container">
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Id</td>
+            <td>@Model.UserModel.Id</td>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td>@Model.UserModel.Username</td>
+        </tr>
+        <tr>
+            <td>Email Address</td>
+            <td>@Model.UserModel.Contact.Email</td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>@Model.UserModel.Contact.PhoneNumber</td>
+        </tr>
+        <tr>
+            <td>Street</td>
+            <td>@Model.UserModel.Address.Street</td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>@Model.UserModel.Address.City</td>
+        </tr>
+        <tr>
+            <td>Post Code</td>
+            <td>@Model.UserModel.Address.PostCode</td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>@Model.UserModel.Address.Country</td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <h3>Bank Accounts</h3>
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Account Number</th>
+            <th>Balance</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var bankAccount in Model.BankAccounts)
+        {
+            <tr>
+                <td>@bankAccount.Id</td>
+                <td>@bankAccount.AccountNumber</td>
+                <td>@bankAccount.Balance</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
