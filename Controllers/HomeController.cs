@@ -106,7 +106,7 @@ namespace BankWebApp.Controllers
                 return RedirectToAction("Login");
             }
             
-            _signInManager.SignOutAsync();
+            _signInManager.SignOutAsync().GetAwaiter().GetResult(); //wait for sign out before redirecting
             return RedirectToAction("Login");
         }
         
@@ -130,6 +130,7 @@ namespace BankWebApp.Controllers
             return View();
         }
         
+        // TODO: say why model invalid
         [HttpPost]
         public IActionResult Register(RegisterModel registerModel)
         {
@@ -158,7 +159,7 @@ namespace BankWebApp.Controllers
             }
 
             registerModel.Success = false;
-            registerModel.Reason = "Invalid model state";
+            registerModel.Reason = string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));;
             
             return View(registerModel);
         }
