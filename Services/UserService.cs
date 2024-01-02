@@ -119,7 +119,7 @@ namespace BankWebApp.Services
         /// <summary>
         /// Gets the bank account of a user by its account number.
         /// </summary>
-        /// <param name="id">the bank account numebr to search for ( unique )</param>
+        /// <param name="id">the bank account number to search for ( unique )</param>
         /// <returns>the specific bank account</returns>
         public BankAccountModel? GetBankAccountsById(string id)
         {
@@ -134,6 +134,16 @@ namespace BankWebApp.Services
         public IList<RolesModel> GetRolesById(int uid)
         {
             return _databaseService.GetRolesById(uid);
+        }
+        
+        public IList<TransactionModel> GetAllTransactions()
+        {
+            return _databaseService.GetTransactions();
+        }
+        
+        public IList<TransactionModel> GetTransactionsByAccountId(int accountId)
+        {
+            return _databaseService.GetTransactions(accountId);
         }
         
     }

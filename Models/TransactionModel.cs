@@ -1,6 +1,6 @@
 ﻿namespace BankWebApp.Models;
 
-public class Transaction
+public class TransactionModel
 {
     public int Id { get; set; }
     public int SenderId { get; set; }

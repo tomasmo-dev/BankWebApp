@@ -63,11 +63,17 @@ else
                     <li class="nav-item">
                         <a class="nav-link text-dark @(controller.Equals("Account") && action.Equals("Transfer") ? "active" : "")" asp-area="" asp-controller="Account" asp-action="Transfer">Transfer</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark @(controller.Equals("Account") && action.Equals("History") ? "active" : "")" asp-area="" asp-controller="Account" asp-action="History">Transaction History</a>
+                    </li>
                     <!-- If the user is an admin, display the Add Funds link -->
                     @if (User.HasClaim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", "Admin"))
                     {
                         <li class="nav-item">
                             <a class="nav-link text-dark @(controller.Equals("Account") && action.Equals("AddFunds") ? "active" : "")" asp-area="" asp-controller="Account" asp-action="AddFunds">Add Funds</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @(controller.Equals("Account") && action.Equals("ListUsers") ? "active" : "")" asp-area="" asp-controller="Account" asp-action="ListUsers">List Users</a>
                         </li>
                     }
                     <!-- Logout link -->

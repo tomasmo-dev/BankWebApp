@@ -25,3 +25,8 @@ The project is structured into several parts:
 - Transaction history
 - Admin dashboard
 - User dashboard
+
+## Custom User Components
+
+- `Navbar`: The navigation bar at the top of the page. made with View Component.
+- `Footer`: The footer at the bottom of the page. made with Partial View.

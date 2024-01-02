@@ -88,7 +88,7 @@ namespace BankWebApp.Controllers
                     return RedirectToAction();
                 }
 
-                _signInManager.SignInAsync(user, loginModel.RememberMe);
+                _signInManager.SignInAsync(user, loginModel.RememberMe).GetAwaiter().GetResult();
 
                 _logger.LogDebug($"Login successful for user {Username}");
                 
@@ -130,7 +130,7 @@ namespace BankWebApp.Controllers
             return View();
         }
         
-        // TODO: say why model invalid
+        // DONE: say why model invalid
         [HttpPost]
         public IActionResult Register(RegisterModel registerModel)
         {

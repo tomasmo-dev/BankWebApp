@@ -208,8 +208,26 @@ public class AccountController : Controller
         return View(model);
     }
 
+    [Authorize(Roles = "Admin")]
     public IActionResult Delete()
     {
         throw new NotImplementedException();
+    }
+
+    public IActionResult History()
+    {
+        AccountHistoryModel model = new();
+        
+        var myId = (User.Claims.ToArray()[1].Value).ToInt32();
+        
+        var bankAccounts = _userService.GetBankAccountsById(myId);
+
+        // get all transactions from all bank accounts
+        var transactions = bankAccounts.ToList().SelectMany(bankAccount => 
+            _userService.GetTransactionsByAccountId(bankAccount.Id)).ToList();
+        
+        model.Transactions = transactions;
+        
+        return View(model);
     }
 }

@@ -1,0 +1,28 @@
+﻿@model AccountHistoryModel
+@{
+    ViewData["Title"] = "Transaction History";
+}
+
+<h1>Transaction History</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Sender Name</th>
+            <th scope="col">Receiver Name</th>
+            <th scope="col">Sent At</th>
+            <th scope="col">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Transactions)
+        {
+            <tr>
+                <td>@item.Sender.User.Username</td>
+                <td>@item.Receiver.User.Username</td>
+                <td>@item.SentAt</td>
+                <td>@item.Amount</td>
+            </tr>
+        }
+    </tbody>
+</table>

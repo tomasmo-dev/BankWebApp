@@ -143,6 +143,8 @@ public partial class DatabaseService
             account.User = users.First(u => u.Id == account.UserId);
         }
         
+        reader.Close();
+        
         return accounts.Count > 0 ? accounts : null;
     }
     
@@ -166,6 +168,39 @@ public partial class DatabaseService
             var users = GetUsers();
             
             result.User = users.First(u => u.Id == result.UserId);
+            
+            reader.Close();
+            
+            return result;
+        }
+        
+        return null;
+    }
+
+    public BankAccountModel? GetBankAccountByAccountId(int Id)
+    {
+        var sql = "SELECT Id, AccountNumber, Balance, UserId FROM BankAccount WHERE Id = @Id";
+        var cmd = new SqlCommand(sql, _connection);
+        
+        cmd.Parameters.AddWithValue("@Id", Id);
+        
+        var reader = cmd.ExecuteReader();
+        
+        if (reader.Read())
+        {
+            var result = new BankAccountModel
+            {
+                Id = reader.GetInt32(0),
+                AccountNumber = reader.GetString(1),
+                Balance = reader.GetDecimal(2),
+                UserId = reader.GetInt32(3)
+            };
+            
+            var users = GetUsers();
+            
+            result.User = users.First(u => u.Id == result.UserId);
+            
+            reader.Close();
             
             return result;
         }
@@ -276,5 +311,71 @@ public partial class DatabaseService
         cmd.Parameters.AddWithValue("@AccountNumber", guid);
         cmd.ExecuteNonQuery();
 
+    }
+
+    public IList<TransactionModel> GetTransactions()
+    {
+        var sql = "SELECT Id, SenderId, ReceiverId, Amount, SentAt FROM Transactions";
+        var cmd = new SqlCommand(sql, _connection);
+        
+        var transactions = new List<TransactionModel>();
+        
+        var reader = cmd.ExecuteReader();
+        
+        while (reader.Read())
+        {
+            transactions.Add(new TransactionModel
+            {
+                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                SenderId = reader.GetInt32(reader.GetOrdinal("SenderId")),
+                ReceiverId = reader.GetInt32(reader.GetOrdinal("ReceiverId")),
+                Amount = reader.GetDecimal(reader.GetOrdinal("Amount")),
+                SentAt = reader.GetDateTime(reader.GetOrdinal("SentAt"))
+            });
+        }
+        
+        reader.Close();
+
+        foreach (var transaction in transactions)
+        {
+            transaction.Sender = GetBankAccountByAccountId(transaction.SenderId);
+            transaction.Receiver = GetBankAccountByAccountId(transaction.ReceiverId);
+        }
+        
+        return transactions;
+    }
+
+    public IList<TransactionModel> GetTransactions(int uid)
+    {
+        var sql = "SELECT Id, SenderId, ReceiverId, Amount, SentAt FROM Transactions WHERE SenderId = @Id OR ReceiverId = @Id";
+        var cmd = new SqlCommand(sql, _connection);
+        
+        cmd.Parameters.AddWithValue("@Id", uid);
+        
+        var transactions = new List<TransactionModel>();
+        
+        var reader = cmd.ExecuteReader();
+        
+        while (reader.Read())
+        {
+            transactions.Add(new TransactionModel
+            {
+                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                SenderId = reader.GetInt32(reader.GetOrdinal("SenderId")),
+                ReceiverId = reader.GetInt32(reader.GetOrdinal("ReceiverId")),
+                Amount = reader.GetDecimal(reader.GetOrdinal("Amount")),
+                SentAt = reader.GetDateTime(reader.GetOrdinal("SentAt"))
+            });
+        }
+        
+        reader.Close();
+        
+        foreach (var transaction in transactions)
+        {
+            transaction.Sender = GetBankAccountByAccountId(transaction.SenderId);
+            transaction.Receiver = GetBankAccountByAccountId(transaction.ReceiverId);
+        }
+        
+        return transactions;
     }
 }
