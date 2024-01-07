@@ -5,8 +5,17 @@ using Microsoft.Data.SqlClient;
 
 namespace BankWebApp.Services;
 
+/// <summary>
+/// The DatabaseService class is responsible for managing the database operations.
+/// It contains methods for getting users, checking if a username exists, registering a user, getting bank accounts by user id, transferring funds, getting roles by user id, getting all bank accounts, adding funds, and getting transactions.
+/// </summary>
 public partial class DatabaseService
 {
+    
+    /// <summary>
+    /// Gets all users from the database.
+    /// </summary>
+    /// <returns>A list of UserModel objects.</returns>
     public IList<UserModel> GetUsers()
     {
         var users = new List<UserModel>();
@@ -45,6 +54,10 @@ public partial class DatabaseService
         return users;
     }
 
+    /// <summary>
+    /// Gets all users from the database.
+    /// </summary>
+    /// <returns>A list of UserModel objects.</returns>
     public bool UsernameExists(string _username)
     {
         var sql = "SELECT Username FROM Users WHERE Username = @username";
@@ -55,6 +68,11 @@ public partial class DatabaseService
         return result != null;
     }
 
+    /// <summary>
+    /// Registers a new user in the database.
+    /// </summary>
+    /// <param name="user">The user to register.</param>
+    /// <returns>True if the registration was successful, false otherwise.</returns>
     public bool RegisterUser(UserModel user)
     {
         using (SqlConnection con = new SqlConnection(Envs.ConnectionString))
@@ -116,6 +134,11 @@ public partial class DatabaseService
         }
     }
 
+    /// <summary>
+    /// Gets a list of bank accounts by user id.
+    /// </summary>
+    /// <param name="UserId">The user id to get the bank accounts for.</param>
+    /// <returns>A list of BankAccountModel objects.</returns>
     public IList<BankAccountModel>? GetBankAccountById(int UserId)
     {
         List<BankAccountModel> accounts = new List<BankAccountModel>();
@@ -148,6 +171,11 @@ public partial class DatabaseService
         return accounts.Count > 0 ? accounts : null;
     }
     
+    /// <summary>
+    /// Gets a bank account by account number.
+    /// </summary>
+    /// <param name="Id">The account number to get the bank account for.</param>
+    /// <returns>A BankAccountModel object.</returns>
     public BankAccountModel? GetBankAccountById(string Id)
     {
         var sql = "SELECT Id, AccountNumber, Balance, UserId FROM BankAccount WHERE AccountNumber = @Id";
@@ -177,6 +205,11 @@ public partial class DatabaseService
         return null;
     }
 
+    /// <summary>
+    /// Gets a bank account by account id.
+    /// </summary>
+    /// <param name="Id">The account id to get the bank account for.</param>
+    /// <returns>A BankAccountModel object.</returns>
     public BankAccountModel? GetBankAccountByAccountId(int Id)
     {
         var sql = "SELECT Id, AccountNumber, Balance, UserId FROM BankAccount WHERE Id = @Id";
@@ -208,6 +241,13 @@ public partial class DatabaseService
         return null;
     }
 
+    /// <summary>
+    /// Transfers funds from one account to another.
+    /// </summary>
+    /// <param name="from">The account number to transfer funds from.</param>
+    /// <param name="To">The account number to transfer funds to.</param>
+    /// <param name="Amount">The amount to transfer.</param>
+    /// <returns>True if the transfer was successful, false otherwise.</returns>
     public bool TransferFunds(Guid from, Guid To, decimal Amount)
     {
         var fromAccount = GetBankAccountById(from.ToString());
@@ -254,6 +294,11 @@ public partial class DatabaseService
         }
     }
 
+    /// <summary>
+    /// Gets a list of roles by user id.
+    /// </summary>
+    /// <param name="uid">The user id to get the roles for.</param>
+    /// <returns>A list of RolesModel objects.</returns>
     public IList<RolesModel> GetRolesById(int uid)
     {
         var roles = new List<RolesModel>();
@@ -275,6 +320,10 @@ public partial class DatabaseService
         return roles;
     }
 
+    /// <summary>
+    /// Gets all bank accounts from the database.
+    /// </summary>
+    /// <returns>A list of BankAccountModel objects.</returns>
     public IList<BankAccountModel> GetAllBankAccounts()
     {
         var accounts = new List<BankAccountModel>();
@@ -303,6 +352,11 @@ public partial class DatabaseService
         return accounts;
     }
 
+    /// <summary>
+    /// Adds funds to a bank account.
+    /// </summary>
+    /// <param name="guid">The account number to add funds to.</param>
+    /// <param name="amount">The amount to add.</param>
     public void AddFunds(Guid guid, decimal amount)
     {
         var sql = "UPDATE BankAccount SET Balance = Balance + @Amount WHERE AccountNumber = @AccountNumber";
@@ -313,6 +367,10 @@ public partial class DatabaseService
 
     }
 
+    /// <summary>
+    /// Gets all transactions from the database.
+    /// </summary>
+    /// <returns>A list of TransactionModel objects.</returns>
     public IList<TransactionModel> GetTransactions()
     {
         var sql = "SELECT Id, SenderId, ReceiverId, Amount, SentAt FROM Transactions";
@@ -345,6 +403,11 @@ public partial class DatabaseService
         return transactions;
     }
 
+    /// <summary>
+    /// Gets a list of transactions by user id.
+    /// </summary>
+    /// <param name="uid">The user id to get the transactions for.</param>
+    /// <returns>A list of TransactionModel objects.</returns>
     public IList<TransactionModel> GetTransactions(int uid)
     {
         var sql = "SELECT Id, SenderId, ReceiverId, Amount, SentAt FROM Transactions WHERE SenderId = @Id OR ReceiverId = @Id";

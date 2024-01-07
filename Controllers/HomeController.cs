@@ -22,6 +22,7 @@ namespace BankWebApp.Controllers
         /// </summary>
         /// <param name="logger">An instance of ILogger interface to handle logging.</param>
         /// <param name="userService">An instance of UserService to handle user related operations.</param>
+        /// <param name="signInManager">An instance of MySignInManager to handle user sign in operations.</param>
         public HomeController(ILogger<HomeController> logger, UserService userService, MySignInManager signInManager)
         {
             _logger = logger;
@@ -98,6 +99,10 @@ namespace BankWebApp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Handles the request to log out the user.
+        /// </summary>
+        /// <returns>Redirects to the Login view after successfully logging out the user.</returns>
         public IActionResult Logout()
         {
             var signedIn = User.Identity!.IsAuthenticated;
@@ -120,17 +125,29 @@ namespace BankWebApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         
+        /// <summary>
+        /// Handles the request when the user is denied access.
+        /// </summary>
+        /// <returns>The Error view along with the request id.</returns>
         public IActionResult AccessDenied()
         {
             return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        /// <summary>
+        /// Handles the GET request for the Register view.
+        /// </summary>
+        /// <returns>The Register view.</returns>
         public IActionResult Register()
         {
             return View();
         }
         
-        // DONE: say why model invalid
+        /// <summary>
+        /// Handles the POST request for the Register view.
+        /// </summary>
+        /// <param name="registerModel">The registration details provided by the user.</param>
+        /// <returns>The Register view if the model state is invalid, otherwise redirects to the Login view after successful registration.</returns>
         [HttpPost]
         public IActionResult Register(RegisterModel registerModel)
         {
