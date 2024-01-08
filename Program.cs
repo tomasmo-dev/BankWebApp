@@ -1,3 +1,4 @@
+using BankWebApp.env;
 using BankWebApp.Services;
 
 namespace BankWebApp
@@ -15,6 +16,10 @@ namespace BankWebApp
         {
             // Initialize a new instance of the WebApplication builder with the provided command-line arguments.
             var builder = WebApplication.CreateBuilder(args);
+            
+            // Set the connection string from appsettings.json
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+            Envs.ConnectionString = connectionString!;
 
             // Register MVC controllers and views to the services.
             builder.Services.AddControllersWithViews();

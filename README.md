@@ -14,8 +14,18 @@ The project is structured into several parts:
 1. Clone the repository.
 2. Install the necessary dependencies.
 3. Set up the MSSQL database using the provided SQL scripts.
-4. Update the connection string in `env/Envs.cs` with your database details.
+4. Update the connection string in `appsettings.json` with your database details.
 5. Run the application.
+
+## How to gain admin access
+
+1. Register a new user.
+2. Open the database insert a new row into `UserRoles` table
+3. Set the `UserId` to the `Id` of the user you want to make admin.
+4. Set the `RoleName` to `Admin`.
+5. Save the changes.
+6. The user should now have admin access.
+7. Admin tools can be accessed by clicking the new buttons in the navbar.
 
 ## Features
 
