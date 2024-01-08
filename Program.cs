@@ -25,6 +25,8 @@ namespace BankWebApp
             builder.Services.AddSingleton<MySignInManager>();
             builder.Services.AddSingleton<TransferService>();
 
+            
+
             // Configure authentication services with a custom scheme and cookie settings.
             builder.Services.AddAuthentication(options =>
             {

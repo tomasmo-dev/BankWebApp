@@ -30,3 +30,15 @@ The project is structured into several parts:
 
 - `Navbar`: The navigation bar at the top of the page. made with View Component.
 - `Footer`: The footer at the bottom of the page. made with Partial View.
+
+## Documentation
+
+The documentation for this project is available in the `docs` folder.
+Files in the `docs` folder are generated using doxygen.
+
+Available versions of the documentation:
+
+- [PDF Documentation](./docs/documentation.pdf)&nbsp;&nbsp;&nbsp;&nbsp;(same as the rtf version)
+- [RTF Documentation](./docs/rtf/refman.rtf)&nbsp;&nbsp;&nbsp;&nbsp;(same as the pdf version, may give warnings about being unsafe)
+- [HTML Documentation](./docs/html/index.html)&nbsp;(best version, but requires a browser to view)
+- Code Comments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(in the source code)

@@ -236,29 +236,24 @@ public class AccountController : Controller
     {
         if (!int.TryParse(id, out _))
         {
-            return Problem("Invalid user id. (must be of type int)");
+            return RedirectToAction("ListUsers");
         }
 
         var user = _userService.GetUserById(int.Parse(id));
         var bankAccounts = _userService.GetBankAccountsById(user!.Id);
+        
+        var transactions = bankAccounts.ToList().SelectMany(bankAccount =>
+            _userService.GetTransactionsByAccountId(bankAccount.Id)).ToList();
 
         var model = new ListUsersViewModel()
         {
             UserModel = user,
-            BankAccounts = bankAccounts
+            BankAccounts = bankAccounts,
+            Transactions = transactions,
         };
 
 
         return View(model);
-    }
-
-    /// <summary>
-    /// Deletes a user (admin only).
-    /// </summary>
-    [Authorize(Roles = "Admin")]
-    public IActionResult Delete()
-    {
-        throw new NotImplementedException();
     }
 
     /// <summary>

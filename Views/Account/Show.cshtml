@@ -76,4 +76,27 @@
         }
         </tbody>
     </table>
+    
+    <h3>Transactions</h3>
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th>Sender Name</th>
+            <th>Receiver Name</th>
+            <th>Sent At</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var transaction in Model.Transactions)
+        {
+            <tr>
+                <td>@transaction.Sender.User.Username</td>
+                <td>@transaction.Receiver.User.Username</td>
+                <td>@transaction.SentAt</td>
+                <td>@transaction.Amount</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>
