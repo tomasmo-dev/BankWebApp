@@ -1,0 +1,45 @@
+﻿services:
+  bankwebapp:
+    image: bankwebapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - "8080:80"
+        - "9090:443"
+    depends_on:
+        - bankdb
+    restart: always
+    volumes:
+      - BankWebAppKeys:/root/.aspnet/DataProtection-Keys
+      
+  bankdb:
+    image: mcr.microsoft.com/azure-sql-edge
+    container_name: BankDB
+    ports:
+      - "6661:1433"
+    environment:
+        - ACCEPT_EULA=1
+        - MSSQL_SA_PASSWORD=Heslo1234.
+    cap_add:
+      - SYS_PTRACE
+    restart: always
+    volumes:
+      - ./BankDB-data:/var/opt/mssql/data
+  
+  #bankdb:
+  #  image: mcr.microsoft.com/azure-sql-edge
+  #  container_name: BankDB
+  #  ports:
+  #    - "6661:1433"
+  #  environment:
+  #    - ACCEPT_EULA=1
+  #    - MSSQL_SA_PASSWORD=Heslo1234.
+  #  cap_add:
+  #    - SYS_PTRACE
+  #  restart: always
+  #  volumes:
+  #    - BankDB:/var/opt/mssql
+
+volumes: 
+    BankWebAppKeys:

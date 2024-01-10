@@ -8,16 +8,27 @@ The project is structured into several parts:
 
 - `env/Envs.cs`: Contains the connection string for the MSSQL database.
 - `database.sql`: Contains the SQL scripts for creating the necessary tables and indices in the database.
+- `wwwroot/`: Contains the static files for the web application. (js css images)
+- 
 
 ## Setup
 
 1. Clone the repository.
-2. Install the necessary dependencies.
-3. Set up the MSSQL database using the provided SQL scripts.
-4. Update the connection string in `appsettings.json` with your database details.
-5. Run the application.
+2. Ensure that you have docker installed.
+2. Ensure that you have docker-compose installed.
+3. Run `docker-compose up -d` to start the application.
+5. Enjoy!.
 
-## How to gain admin access
+## How to login to an admin account
+
+1. Open the login page
+2. Enter the following credentials:
+   - Username: `admin`
+   - Password: `admin`
+3. Login.
+4. Admin tools can be accessed by clicking the new buttons in the navbar.
+
+## How to add admin access to a new user
 
 1. Register a new user.
 2. Open the database insert a new row into `UserRoles` table
@@ -35,6 +46,10 @@ The project is structured into several parts:
 - Transaction history
 - Admin dashboard
 - User dashboard
+
+## Database Diagram
+
+![Database Diagram](./docs/FakeBankDiagram.png)
 
 ## Custom User Components
 

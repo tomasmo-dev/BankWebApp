@@ -1,5 +1,5 @@
 ﻿-- Create a new database named FakeBank
-CREATE DATABASE FakeBank;
+CREATE DATABASE [FakeBank];
 
 -- Use the newly created database
 USE [FakeBank];
