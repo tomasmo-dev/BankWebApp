@@ -65,5 +65,5 @@ Available versions of the documentation:
 
 - [PDF Documentation](./docs/documentation.pdf)&nbsp;&nbsp;&nbsp;&nbsp;(same as the rtf version)
 - [RTF Documentation](./docs/rtf/refman.rtf)&nbsp;&nbsp;&nbsp;&nbsp;(same as the pdf version, may give warnings about being unsafe)
-- [HTML Documentation](./docs/html/index.html)&nbsp;(best version, but requires a browser to view)
+- [HTML Documentation](https://docs.tomas-moravec.dev/prg-prvni-pololetni-projekt/)&nbsp;(best version, but requires a browser to view)
 - Code Comments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(in the source code)
