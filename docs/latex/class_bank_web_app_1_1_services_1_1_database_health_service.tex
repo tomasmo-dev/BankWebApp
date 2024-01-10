@@ -1,0 +1,57 @@
+\doxysection{Bank\+Web\+App.\+Services.\+Database\+Health\+Service Class Reference}
+\label{class_bank_web_app_1_1_services_1_1_database_health_service}\index{BankWebApp.Services.DatabaseHealthService@{BankWebApp.Services.DatabaseHealthService}}
+
+
+Service for checking the health of the database. Implements the Microsoft.\+Extensions.\+Diagnostics.\+Health\+Checks.\+IHealth\+Check interface.  
+
+
+Inheritance diagram for Bank\+Web\+App.\+Services.\+Database\+Health\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_bank_web_app_1_1_services_1_1_database_health_service}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ Health\+Check\+Result $>$ \textbf{ Check\+Health\+Async} (Health\+Check\+Context context, Cancellation\+Token cancellation\+Token=new Cancellation\+Token())
+\begin{DoxyCompactList}\small\item\em Asynchronously checks the health of the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Service for checking the health of the database. Implements the Microsoft.\+Extensions.\+Diagnostics.\+Health\+Checks.\+IHealth\+Check interface. 
+
+Definition at line \textbf{ 9} of file \textbf{ Database\+Health\+Service.\+cs}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_health_service_a784f76ed5e892f736826059b7a82256b}} 
+\index{BankWebApp.Services.DatabaseHealthService@{BankWebApp.Services.DatabaseHealthService}!CheckHealthAsync@{CheckHealthAsync}}
+\index{CheckHealthAsync@{CheckHealthAsync}!BankWebApp.Services.DatabaseHealthService@{BankWebApp.Services.DatabaseHealthService}}
+\doxysubsubsection{CheckHealthAsync()}
+{\footnotesize\ttfamily Task$<$ Health\+Check\+Result $>$ Bank\+Web\+App.\+Services.\+Database\+Health\+Service.\+Check\+Health\+Async (\begin{DoxyParamCaption}\item[{Health\+Check\+Context}]{context,  }\item[{Cancellation\+Token}]{cancellation\+Token = {\ttfamily new~CancellationToken()} }\end{DoxyParamCaption})}
+
+
+
+Asynchronously checks the health of the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The context under which the health check is being performed.\\
+\hline
+{\em cancellation\+Token} & A System.\+Threading.\+Cancellation\+Token that can be used to cancel the health check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A System.\+Threading.\+Tasks.\+Task that represents the asynchronous operation, containing the Microsoft.\+Extensions.\+Diagnostics.\+Health\+Checks.\+Health\+Check\+Result of the database health check.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 17} of file \textbf{ Database\+Health\+Service.\+cs}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/tomas/source/repos/\+Bank\+Web\+App/\+Services/\textbf{ Database\+Health\+Service.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,240 @@
+\doxysection{Bank\+Web\+App.\+Controllers.\+Account\+Controller Class Reference}
+\label{class_bank_web_app_1_1_controllers_1_1_account_controller}\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+
+
+The Account\+Controller class is responsible for handling requests related to the user\textquotesingle{}s bank account. It includes actions for displaying the account index, transferring funds, adding funds (admin only), listing users (admin only), showing user details (admin only), deleting a user (admin only), and viewing transaction history.  
+
+
+Inheritance diagram for Bank\+Web\+App.\+Controllers.\+Account\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_bank_web_app_1_1_controllers_1_1_account_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Account\+Controller} (ILogger$<$ \textbf{ Account\+Controller} $>$ logger, \textbf{ User\+Service} user\+Service, \textbf{ Transfer\+Service} transfer\+Service)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the Account\+Controller class. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Index} ()
+\begin{DoxyCompactList}\small\item\em Displays the account index page. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Transfer} (bool? success=null, string? reason=null)
+\begin{DoxyCompactList}\small\item\em Displays the transfer page. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Transfer} (\textbf{ Transfer\+View\+Model} model)
+\begin{DoxyCompactList}\small\item\em Handles a POST request to transfer funds. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Add\+Funds} (bool? success=null, string? reason=null)
+\begin{DoxyCompactList}\small\item\em Displays the add funds page (admin only). \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Add\+Funds} (\textbf{ Add\+Funds\+View\+Model} model)
+\begin{DoxyCompactList}\small\item\em Handles a POST request to add funds to an account (admin only). \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ List\+Users} ()
+\begin{DoxyCompactList}\small\item\em Displays the list users page (admin only). \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Show} (string id)
+\begin{DoxyCompactList}\small\item\em Displays the details of a user (admin only). \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ History} ()
+\begin{DoxyCompactList}\small\item\em Displays the transaction history page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The Account\+Controller class is responsible for handling requests related to the user\textquotesingle{}s bank account. It includes actions for displaying the account index, transferring funds, adding funds (admin only), listing users (admin only), showing user details (admin only), deleting a user (admin only), and viewing transaction history. 
+
+Definition at line \textbf{ 14} of file \textbf{ Account\+Controller.\+cs}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_account_controller_a2c84028b4e40d557c6c5e5e005ce9b57}} 
+\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}!AccountController@{AccountController}}
+\index{AccountController@{AccountController}!BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+\doxysubsubsection{AccountController()}
+{\footnotesize\ttfamily Bank\+Web\+App.\+Controllers.\+Account\+Controller.\+Account\+Controller (\begin{DoxyParamCaption}\item[{ILogger$<$ \textbf{ Account\+Controller} $>$}]{logger,  }\item[{\textbf{ User\+Service}}]{user\+Service,  }\item[{\textbf{ Transfer\+Service}}]{transfer\+Service }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the Account\+Controller class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em logger} & The logger used to log information about program execution.\\
+\hline
+{\em user\+Service} & The service used to interact with user data.\\
+\hline
+{\em transfer\+Service} & The service used to handle money transfers.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 26} of file \textbf{ Account\+Controller.\+cs}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_account_controller_ae60339bcb6943b96a811568434a98fc1}} 
+\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}!AddFunds@{AddFunds}}
+\index{AddFunds@{AddFunds}!BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+\doxysubsubsection{AddFunds()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Account\+Controller.\+Add\+Funds (\begin{DoxyParamCaption}\item[{\textbf{ Add\+Funds\+View\+Model}}]{model }\end{DoxyParamCaption})}
+
+
+
+Handles a POST request to add funds to an account (admin only). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The data from the add funds form.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A redirect to the add funds page, with success and reason parameters.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 174} of file \textbf{ Account\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_account_controller_a922987a114b80a18ab97480906254bd7}} 
+\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}!AddFunds@{AddFunds}}
+\index{AddFunds@{AddFunds}!BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+\doxysubsubsection{AddFunds()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Account\+Controller.\+Add\+Funds (\begin{DoxyParamCaption}\item[{bool?}]{success = {\ttfamily null},  }\item[{string?}]{reason = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+Displays the add funds page (admin only). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em success} & Indicates whether the last add funds operation was successful.\\
+\hline
+{\em reason} & The reason for the last add funds operation\textquotesingle{}s failure, if it failed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The add funds view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 156} of file \textbf{ Account\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_account_controller_ade373ba83d327defb48f93c638b75cca}} 
+\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}!History@{History}}
+\index{History@{History}!BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+\doxysubsubsection{History()}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Account\+Controller.\+History (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the transaction history page. 
+
+\begin{DoxyReturn}{Returns}
+The history view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 263} of file \textbf{ Account\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_account_controller_ab44317b210fdd2de018a30963c49e4bb}} 
+\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}!Index@{Index}}
+\index{Index@{Index}!BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+\doxysubsubsection{Index()}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Account\+Controller.\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the account index page. 
+
+\begin{DoxyReturn}{Returns}
+The account index view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 38} of file \textbf{ Account\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_account_controller_aa365cf345c0b6b8683a4a17e572620cb}} 
+\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}!ListUsers@{ListUsers}}
+\index{ListUsers@{ListUsers}!BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+\doxysubsubsection{ListUsers()}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Account\+Controller.\+List\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the list users page (admin only). 
+
+\begin{DoxyReturn}{Returns}
+The list users view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 209} of file \textbf{ Account\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_account_controller_a67aae9805064d095b9944eb2aa01ba70}} 
+\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}!Show@{Show}}
+\index{Show@{Show}!BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+\doxysubsubsection{Show()}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Account\+Controller.\+Show (\begin{DoxyParamCaption}\item[{string}]{id }\end{DoxyParamCaption})}
+
+
+
+Displays the details of a user (admin only). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the user to show.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The show view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 235} of file \textbf{ Account\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_account_controller_a12acba2904791ac59d92aad490ca33d6}} 
+\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}!Transfer@{Transfer}}
+\index{Transfer@{Transfer}!BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+\doxysubsubsection{Transfer()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Account\+Controller.\+Transfer (\begin{DoxyParamCaption}\item[{bool?}]{success = {\ttfamily null},  }\item[{string?}]{reason = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+Displays the transfer page. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em success} & Indicates whether the last transfer was successful.\\
+\hline
+{\em reason} & The reason for the last transfer\textquotesingle{}s failure, if it failed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The transfer view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 65} of file \textbf{ Account\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_account_controller_ab1e3d908e6b1cde6196cde167799a654}} 
+\index{BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}!Transfer@{Transfer}}
+\index{Transfer@{Transfer}!BankWebApp.Controllers.AccountController@{BankWebApp.Controllers.AccountController}}
+\doxysubsubsection{Transfer()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Account\+Controller.\+Transfer (\begin{DoxyParamCaption}\item[{\textbf{ Transfer\+View\+Model}}]{model }\end{DoxyParamCaption})}
+
+
+
+Handles a POST request to transfer funds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The data from the transfer form.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A redirect to the transfer page, with success and reason parameters.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 85} of file \textbf{ Account\+Controller.\+cs}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/tomas/source/repos/\+Bank\+Web\+App/\+Controllers/\textbf{ Account\+Controller.\+cs}\end{DoxyCompactItemize}

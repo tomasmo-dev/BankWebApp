@@ -10,9 +10,17 @@ var hierarchy =
       [ "BankWebApp.Controllers.AccountController", "class_bank_web_app_1_1_controllers_1_1_account_controller.html", null ],
       [ "BankWebApp.Controllers.HomeController", "class_bank_web_app_1_1_controllers_1_1_home_controller.html", null ]
     ] ],
+    [ "ControllerBase", null, [
+      [ "BankWebApp.Controllers.HealthCheckController", "class_bank_web_app_1_1_controllers_1_1_health_check_controller.html", null ]
+    ] ],
     [ "BankWebApp.Models.ErrorViewModel", "class_bank_web_app_1_1_models_1_1_error_view_model.html", null ],
     [ "IDisposable", null, [
       [ "BankWebApp.Services.DatabaseService", "class_bank_web_app_1_1_services_1_1_database_service.html", null ]
+    ] ],
+    [ "IHealthCheck", null, [
+      [ "BankWebApp.Services.DatabaseHealthService", "class_bank_web_app_1_1_services_1_1_database_health_service.html", null ],
+      [ "BankWebApp.Services.DiskHealthService", "class_bank_web_app_1_1_services_1_1_disk_health_service.html", null ],
+      [ "BankWebApp.Services.MemoryHealthService", "class_bank_web_app_1_1_services_1_1_memory_health_service.html", null ]
     ] ],
     [ "BankWebApp.Models.ListUsersViewModel", "class_bank_web_app_1_1_models_1_1_list_users_view_model.html", null ],
     [ "BankWebApp.Models.LoginModel", "class_bank_web_app_1_1_models_1_1_login_model.html", null ],

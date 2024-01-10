@@ -24,14 +24,9 @@
 */
 var NAVTREE =
 [
-  [ "Fake Bank", "index.html", [
-    [ "BankWebApp", "md__r_e_a_d_m_e.html", [
-      [ "Project Structure", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
-      [ "Setup", "md__r_e_a_d_m_e.html#autotoc_md2", null ],
-      [ "Features", "md__r_e_a_d_m_e.html#autotoc_md3", null ],
-      [ "Custom User Components", "md__r_e_a_d_m_e.html#autotoc_md4", null ]
-    ] ],
-    [ "The MIT License (MIT)", "md_wwwroot_lib_jquery_validation__l_i_c_e_n_s_e.html", null ],
+  [ "Fake bank", "index.html", [
+    [ "BankWebApp", "index.html", "index" ],
+    [ "The MIT License (MIT)", "md__c___users_tomas_source_repos__bank_web_app_wwwroot_lib_jquery_validation__l_i_c_e_n_s_e.html", null ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -45,13 +40,20 @@ var NAVTREE =
         [ "Variables", "functions_vars.html", null ],
         [ "Properties", "functions_prop.html", null ]
       ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs.html",
+"class_bank_web_app_1_1_models_1_1_transaction_model.html#aba51d71da127340da03f52cbd77ca9cf"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

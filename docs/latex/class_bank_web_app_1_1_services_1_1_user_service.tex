@@ -1,0 +1,287 @@
+\doxysection{Bank\+Web\+App.\+Services.\+User\+Service Class Reference}
+\label{class_bank_web_app_1_1_services_1_1_user_service}\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+
+
+Service class for managing users.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ User\+Service} ()
+\begin{DoxyCompactList}\small\item\em Constructor for User\+Service. Initializes a new instance of the Database\+Service and refreshes the cache. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ User\+Model} $>$ \textbf{ Get\+Users} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the list of users. If the cache is null or expired, it refreshes the cache before returning the users. \end{DoxyCompactList}\item 
+\textbf{ User\+Model}? \textbf{ Get\+User\+By\+Id} (int id)
+\begin{DoxyCompactList}\small\item\em Retrieves a user by their ID. \end{DoxyCompactList}\item 
+\textbf{ User\+Model}? \textbf{ Get\+User\+By\+Username} (string username)
+\begin{DoxyCompactList}\small\item\em Retrieves a user by their username. \end{DoxyCompactList}\item 
+bool string reason \textbf{ Register\+User} (\textbf{ Register\+Model} new\+User)
+\item 
+IList$<$ \textbf{ Bank\+Account\+Model} $>$ \textbf{ Get\+Bank\+Accounts\+By\+Id} (int uid)
+\begin{DoxyCompactList}\small\item\em Retrieves the bank accounts of a user by their ID. \end{DoxyCompactList}\item 
+\textbf{ Bank\+Account\+Model}? \textbf{ Get\+Bank\+Accounts\+By\+Id} (string id)
+\begin{DoxyCompactList}\small\item\em Retrieves a bank account by its account number. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ Bank\+Account\+Model} $>$ \textbf{ Get\+All\+Bank\+Accounts} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all bank accounts. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ Roles\+Model} $>$ \textbf{ Get\+Roles\+By\+Id} (int uid)
+\begin{DoxyCompactList}\small\item\em Retrieves the roles of a user by their ID. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ Transaction\+Model} $>$ \textbf{ Get\+All\+Transactions} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all transactions. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ Transaction\+Model} $>$ \textbf{ Get\+Transactions\+By\+Account\+Id} (int account\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves the transactions of a bank account by its ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ success}
+\begin{DoxyCompactList}\small\item\em Registers a new user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Service class for managing users. 
+
+Definition at line \textbf{ 9} of file \textbf{ User\+Service.\+cs}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_a9fc67db4d0af6d885894c1926c1389d1}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!UserService@{UserService}}
+\index{UserService@{UserService}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{UserService()}
+{\footnotesize\ttfamily Bank\+Web\+App.\+Services.\+User\+Service.\+User\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor for User\+Service. Initializes a new instance of the Database\+Service and refreshes the cache. 
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ User\+Service.\+cs}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_adf99ee1973eae3308f58c5253f6c69a5}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!GetAllBankAccounts@{GetAllBankAccounts}}
+\index{GetAllBankAccounts@{GetAllBankAccounts}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{GetAllBankAccounts()}
+{\footnotesize\ttfamily IList$<$ \textbf{ Bank\+Account\+Model} $>$ Bank\+Web\+App.\+Services.\+User\+Service.\+Get\+All\+Bank\+Accounts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all bank accounts. 
+
+\begin{DoxyReturn}{Returns}
+A list of all bank accounts.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 153} of file \textbf{ User\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_ad6ebe40a14400742e08e3146390e77e1}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!GetAllTransactions@{GetAllTransactions}}
+\index{GetAllTransactions@{GetAllTransactions}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{GetAllTransactions()}
+{\footnotesize\ttfamily IList$<$ \textbf{ Transaction\+Model} $>$ Bank\+Web\+App.\+Services.\+User\+Service.\+Get\+All\+Transactions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all transactions. 
+
+\begin{DoxyReturn}{Returns}
+A list of all transactions.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 172} of file \textbf{ User\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_a4828ca2089810646bce1599e0e6d06de}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!GetBankAccountsById@{GetBankAccountsById}}
+\index{GetBankAccountsById@{GetBankAccountsById}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{GetBankAccountsById()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily IList$<$ \textbf{ Bank\+Account\+Model} $>$ Bank\+Web\+App.\+Services.\+User\+Service.\+Get\+Bank\+Accounts\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{uid }\end{DoxyParamCaption})}
+
+
+
+Retrieves the bank accounts of a user by their ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & The ID of the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of bank accounts owned by the user.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 134} of file \textbf{ User\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_a6611908d12d3574610a9b5f189b0add7}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!GetBankAccountsById@{GetBankAccountsById}}
+\index{GetBankAccountsById@{GetBankAccountsById}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{GetBankAccountsById()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \textbf{ Bank\+Account\+Model}? Bank\+Web\+App.\+Services.\+User\+Service.\+Get\+Bank\+Accounts\+By\+Id (\begin{DoxyParamCaption}\item[{string}]{id }\end{DoxyParamCaption})}
+
+
+
+Retrieves a bank account by its account number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The account number of the bank account.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The bank account with the given account number, or null if no such account exists.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 144} of file \textbf{ User\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_aafd4b0f9ead958871b04c635386ea7ec}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!GetRolesById@{GetRolesById}}
+\index{GetRolesById@{GetRolesById}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{GetRolesById()}
+{\footnotesize\ttfamily IList$<$ \textbf{ Roles\+Model} $>$ Bank\+Web\+App.\+Services.\+User\+Service.\+Get\+Roles\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{uid }\end{DoxyParamCaption})}
+
+
+
+Retrieves the roles of a user by their ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & The ID of the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of roles assigned to the user.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 163} of file \textbf{ User\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_a8a6df684e1ea8bb5c222f79acbb56a4d}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!GetTransactionsByAccountId@{GetTransactionsByAccountId}}
+\index{GetTransactionsByAccountId@{GetTransactionsByAccountId}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{GetTransactionsByAccountId()}
+{\footnotesize\ttfamily IList$<$ \textbf{ Transaction\+Model} $>$ Bank\+Web\+App.\+Services.\+User\+Service.\+Get\+Transactions\+By\+Account\+Id (\begin{DoxyParamCaption}\item[{int}]{account\+Id }\end{DoxyParamCaption})}
+
+
+
+Retrieves the transactions of a bank account by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em account\+Id} & The ID of the bank account.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of transactions associated with the bank account.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 182} of file \textbf{ User\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_acff4837175b8de8b6a8d35aa3e3dd636}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!GetUserById@{GetUserById}}
+\index{GetUserById@{GetUserById}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{GetUserById()}
+{\footnotesize\ttfamily \textbf{ User\+Model}? Bank\+Web\+App.\+Services.\+User\+Service.\+Get\+User\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Retrieves a user by their ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The user with the given ID, or null if no such user exists.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 60} of file \textbf{ User\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_a293d7161740f5f49e3e37a692a2b5d4f}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!GetUserByUsername@{GetUserByUsername}}
+\index{GetUserByUsername@{GetUserByUsername}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{GetUserByUsername()}
+{\footnotesize\ttfamily \textbf{ User\+Model}? Bank\+Web\+App.\+Services.\+User\+Service.\+Get\+User\+By\+Username (\begin{DoxyParamCaption}\item[{string}]{username }\end{DoxyParamCaption})}
+
+
+
+Retrieves a user by their username. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The user with the given username, or null if no such user exists.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 70} of file \textbf{ User\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_ad4625be89edce039e046907beb9a4b37}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!GetUsers@{GetUsers}}
+\index{GetUsers@{GetUsers}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{GetUsers()}
+{\footnotesize\ttfamily IList$<$ \textbf{ User\+Model} $>$ Bank\+Web\+App.\+Services.\+User\+Service.\+Get\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the list of users. If the cache is null or expired, it refreshes the cache before returning the users. 
+
+\begin{DoxyReturn}{Returns}
+A list of User\+Model instances.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 36} of file \textbf{ User\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_a7fa92d1ed2132cba88e364ea649a9eeb}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!RegisterUser@{RegisterUser}}
+\index{RegisterUser@{RegisterUser}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{RegisterUser()}
+{\footnotesize\ttfamily bool string reason Bank\+Web\+App.\+Services.\+User\+Service.\+Register\+User (\begin{DoxyParamCaption}\item[{\textbf{ Register\+Model}}]{new\+User }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 80} of file \textbf{ User\+Service.\+cs}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{class_bank_web_app_1_1_services_1_1_user_service_ac83258ce208f57a1ef36294e160ced80}} 
+\index{BankWebApp.Services.UserService@{BankWebApp.Services.UserService}!success@{success}}
+\index{success@{success}!BankWebApp.Services.UserService@{BankWebApp.Services.UserService}}
+\doxysubsubsection{success}
+{\footnotesize\ttfamily bool Bank\+Web\+App.\+Services.\+User\+Service.\+success}
+
+
+
+Registers a new user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+User} & The details of the new user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A tuple indicating whether the registration was successful and a reason for failure, if applicable.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 80} of file \textbf{ User\+Service.\+cs}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/tomas/source/repos/\+Bank\+Web\+App/\+Services/\textbf{ User\+Service.\+cs}\end{DoxyCompactItemize}

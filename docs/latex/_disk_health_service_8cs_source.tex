@@ -1,0 +1,45 @@
+\doxysection{Disk\+Health\+Service.\+cs}
+\label{_disk_health_service_8cs_source}\index{C:/Users/tomas/source/repos/BankWebApp/Services/DiskHealthService.cs@{C:/Users/tomas/source/repos/BankWebApp/Services/DiskHealthService.cs}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }Microsoft.Extensions.Diagnostics.HealthChecks;}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }BankWebApp.Services;}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }DiskHealthService\ :\ IHealthCheck}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ MinimumFreeSpace\ =\ 1000000000;\ \textcolor{comment}{//\ 1\ GB}}
+\DoxyCodeLine{00017\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ CriticalFreeSpace\ =\ 500000000;\ \textcolor{comment}{//\ 500\ MB}}
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{public}\ Task<HealthCheckResult>\ CheckHealthAsync(HealthCheckContext\ context,\ CancellationToken\ cancellationToken)}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ var\ driveInfo\ =\ \textcolor{keyword}{new}\ DriveInfo(Path.GetPathRoot(Directory.GetCurrentDirectory()));}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ var\ free\ =\ driveInfo.AvailableFreeSpace;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (free\ <\ MinimumFreeSpace)}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Task.FromResult(HealthCheckResult.Unhealthy(\$\textcolor{stringliteral}{"{}Not\ enough\ free\ disk\ space.\ (Minimum:\ \{MinimumFreeSpace\}\ bytes,\ Actual:\ \{free\}\ bytes)"{}}));}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (free\ <\ CriticalFreeSpace)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Task.FromResult(HealthCheckResult.Degraded(\$\textcolor{stringliteral}{"{}Low\ disk\ space.\ (Minimum:\ \{MinimumFreeSpace\}\ bytes,\ Actual:\ \{free\}\ bytes)"{}}));}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Task.FromResult(HealthCheckResult.Healthy(\$\textcolor{stringliteral}{"{}Disk\ has\ enough\ free\ space.\ (Minimum:\ \{MinimumFreeSpace\}\ bytes,\ Actual:\ \{free\}\ bytes)"{}}));}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Task.FromResult(HealthCheckResult.Unhealthy(\textcolor{stringliteral}{"{}Failed\ to\ check\ disk\ health.\ (Exception)"{}},\ e));}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,151 @@
+\doxysection{Health\+Check\+Controller.\+cs}
+\label{_health_check_controller_8cs_source}\index{C:/Users/tomas/source/repos/BankWebApp/Controllers/HealthCheckController.cs@{C:/Users/tomas/source/repos/BankWebApp/Controllers/HealthCheckController.cs}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }System.Text.Json;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }BankWebApp.Services;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }Microsoft.Extensions.Diagnostics.HealthChecks;}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }BankWebApp.Controllers;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ [Route(\textcolor{stringliteral}{"{}api/[controller]/[action]"{}})]}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }HealthCheckController\ :\ ControllerBase}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ ILogger<HealthCheckController>\ \_logger;}
+\DoxyCodeLine{00015\ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ Services\ used\ to\ check\ the\ health\ of\ the\ database,\ disk,\ and\ memory.}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ DatabaseHealthService\ \_dbService;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ DiskHealthService\ \_diskService;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ MemoryHealthService\ \_memoryService;}
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{public}\ HealthCheckController(ILogger<HealthCheckController>\ logger,\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ DatabaseHealthService\ dbService,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ DiskHealthService\ diskService,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ MemoryHealthService\ memoryService)}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \_logger\ =\ logger;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \_dbService\ =\ dbService;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \_diskService\ =\ diskService;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \_memoryService\ =\ memoryService;}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ [HttpGet]}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ All()}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ var\ DatabaseHealth\ =\ await\ CheckDatabaseHealth();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ var\ DiskHealth\ =\ await\ CheckDiskHealth();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ var\ RAMHealth\ =\ await\ CheckRAMHealth();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ var\ healthArray\ =\ \textcolor{keyword}{new}\ HealthCheckResult[]}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ DatabaseHealth.Item2,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ DiskHealth.Item2,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ RAMHealth.Item2}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ OverallHealthCheck}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ HealthStatus\ overallHealth\ =\ HealthStatus.Healthy;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ healthValue\ \textcolor{keywordflow}{in}\ healthArray)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (healthValue.Status\ ==\ HealthStatus.Unhealthy)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ overallHealth\ =\ HealthStatus.Unhealthy;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (healthValue.Status\ ==\ HealthStatus.Degraded)}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ overallHealth\ =\ HealthStatus.Degraded;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ var\ obj\ =\ \textcolor{keyword}{new}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ OverallStatusInt\ =\ overallHealth,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ OverallStatus\ =\ overallHealth.ToString(),}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ StatusEnum\ =\ \textcolor{keyword}{new}\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Healthy,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Degraded,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Unhealthy}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ DatabaseHealth\ =\ DatabaseHealth.Item2,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ DiskHealth\ =\ DiskHealth.Item2,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ RAMHealth\ =\ RAMHealth.Item2}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ var\ json\ =\ JsonSerializer.Serialize(obj);}
+\DoxyCodeLine{00095\ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ overallHealth\ \textcolor{keywordflow}{switch}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Healthy\ =>\ Ok(json),}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Degraded\ =>\ BadRequest(json),}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Unhealthy\ =>\ BadRequest(json)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00108\ \ \ \ \ [HttpGet]}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ Database()}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (await\ CheckDatabaseHealth()).Item1;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ [HttpGet]}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ Disk()}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (await\ CheckDiskHealth()).Item1;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ [HttpGet]}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{public}\ async\ Task<IActionResult>\ RAM()}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (await\ CheckRAMHealth()).Item1;}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{private}\ async\ Task<(IActionResult,\ HealthCheckResult)>\ CheckDatabaseHealth()}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ var\ report\ =\ await\ \_dbService.CheckHealthAsync(\textcolor{keyword}{new}\ (),\ \textcolor{keyword}{new}\ ());}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ json\ =\ JsonSerializer.Serialize(report);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ report.Status\ \textcolor{keywordflow}{switch}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Healthy\ =>\ (Ok(json),\ report),}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Degraded\ =>\ (BadRequest(json),\ report),}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Unhealthy\ =>\ (BadRequest(json),\ report)}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{private}\ async\ Task<(IActionResult,\ HealthCheckResult)>\ CheckDiskHealth()}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ var\ report\ =\ await\ \_diskService.CheckHealthAsync(\textcolor{keyword}{new}\ (),\ \textcolor{keyword}{new}\ ());}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ json\ =\ JsonSerializer.Serialize(report);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ report.Status\ \textcolor{keywordflow}{switch}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Healthy\ =>\ (Ok(json),\ report),}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Degraded\ =>\ (BadRequest(json),\ report),}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Unhealthy\ =>\ (BadRequest(json),\ report)}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{private}\ async\ Task<(IActionResult,\ HealthCheckResult)>\ CheckRAMHealth()}
+\DoxyCodeLine{00174\ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ var\ report\ =\ await\ \_memoryService.CheckHealthAsync(\textcolor{keyword}{new}\ (),\ \textcolor{keyword}{new}\ ());}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ json\ =\ JsonSerializer.Serialize(report);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ report.Status\ \textcolor{keywordflow}{switch}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Healthy\ =>\ (Ok(json),\ report),}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Degraded\ =>\ (BadRequest(json),\ report),}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ HealthStatus.Unhealthy\ =>\ (BadRequest(json),\ report)}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \}}
+
+\end{DoxyCode}

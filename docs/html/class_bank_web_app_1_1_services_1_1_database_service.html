@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Fake Bank: BankWebApp.Services.DatabaseService Class Reference</title>
+<title>Fake bank: BankWebApp.Services.DatabaseService Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Fake Bank
+   <div id="projectname">Fake bank
    </div>
+   <div id="projectbrief">An app that implements basic e-bank functions</div>
   </td>
  </tr>
  </tbody>
@@ -107,13 +108,11 @@ Inheritance diagram for BankWebApp.Services.DatabaseService:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afb644700390d0dc2fb73170a71e75503"><td class="memItemLeft" align="right" valign="top"><a id="afb644700390d0dc2fb73170a71e75503" name="afb644700390d0dc2fb73170a71e75503"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DatabaseService</b> ()</td></tr>
-<tr class="memdesc:afb644700390d0dc2fb73170a71e75503"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor initializes a new instance of the DatabaseService class. It sets the connection string and opens the connection. <br /></td></tr>
+<tr class="memitem:afb644700390d0dc2fb73170a71e75503"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_database_service.html#afb644700390d0dc2fb73170a71e75503">DatabaseService</a> ()</td></tr>
+<tr class="memdesc:afb644700390d0dc2fb73170a71e75503"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor initializes a new instance of the DatabaseService class. It sets the connection string and opens the connection.  <br /></td></tr>
 <tr class="separator:afb644700390d0dc2fb73170a71e75503"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9eb0c47c7aca1c5bf6c7e9446589d6d"><td class="memItemLeft" align="right" valign="top"><a id="af9eb0c47c7aca1c5bf6c7e9446589d6d" name="af9eb0c47c7aca1c5bf6c7e9446589d6d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></tr>
-<tr class="memdesc:af9eb0c47c7aca1c5bf6c7e9446589d6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Dispose method is called when the DatabaseService object is being disposed. It closes the database connection. <br /></td></tr>
+<tr class="memitem:af9eb0c47c7aca1c5bf6c7e9446589d6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_database_service.html#af9eb0c47c7aca1c5bf6c7e9446589d6d">Dispose</a> ()</td></tr>
+<tr class="memdesc:af9eb0c47c7aca1c5bf6c7e9446589d6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Dispose method is called when the DatabaseService object is being disposed. It closes the database connection.  <br /></td></tr>
 <tr class="separator:af9eb0c47c7aca1c5bf6c7e9446589d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e161b45d489f9e9552b75ad93325a9f"><td class="memItemLeft" align="right" valign="top">IList&lt; <a class="el" href="class_bank_web_app_1_1_models_1_1_user_model.html">UserModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_database_service.html#a0e161b45d489f9e9552b75ad93325a9f">GetUsers</a> ()</td></tr>
 <tr class="memdesc:a0e161b45d489f9e9552b75ad93325a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all users from the database.  <br /></td></tr>
@@ -151,10 +150,37 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 <tr class="memitem:a0fa5df5d9ca68a0924a905669e45a38d"><td class="memItemLeft" align="right" valign="top">IList&lt; <a class="el" href="class_bank_web_app_1_1_models_1_1_transaction_model.html">TransactionModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_database_service.html#a0fa5df5d9ca68a0924a905669e45a38d">GetTransactions</a> (int uid)</td></tr>
 <tr class="memdesc:a0fa5df5d9ca68a0924a905669e45a38d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a list of transactions by user id.  <br /></td></tr>
 <tr class="separator:a0fa5df5d9ca68a0924a905669e45a38d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c4d4904b195e56a2173d5d85397fef4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_database_service.html#a2c4d4904b195e56a2173d5d85397fef4">Ping</a> ()</td></tr>
+<tr class="memdesc:a2c4d4904b195e56a2173d5d85397fef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper method for checking if the database is alive. Mainly used for health checks.  <br /></td></tr>
+<tr class="separator:a2c4d4904b195e56a2173d5d85397fef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The DatabaseService class is responsible for managing the database operations. It contains methods for getting users, checking if a username exists, registering a user, getting bank accounts by user id, transferring funds, getting roles by user id, getting all bank accounts, adding funds, and getting transactions. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+
+<p class="definition">Definition at line <a class="el" href="_database_service_8cs_source.html#l00010">10</a> of file <a class="el" href="_database_service_8cs_source.html">DatabaseService.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="afb644700390d0dc2fb73170a71e75503" name="afb644700390d0dc2fb73170a71e75503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb644700390d0dc2fb73170a71e75503">&#9670;&#160;</a></span>DatabaseService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BankWebApp.Services.DatabaseService.DatabaseService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The constructor initializes a new instance of the DatabaseService class. It sets the connection string and opens the connection. </p>
+
+<p class="definition">Definition at line <a class="el" href="_database_service_8cs_source.html#l00026">26</a> of file <a class="el" href="_database_service_8cs_source.html">DatabaseService.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae9c753a910b4194f006d3112a70a4b52" name="ae9c753a910b4194f006d3112a70a4b52"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae9c753a910b4194f006d3112a70a4b52">&#9670;&#160;</a></span>AddFunds()</h2>
 
@@ -190,6 +216,29 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00360">360</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
+
+</div>
+</div>
+<a id="af9eb0c47c7aca1c5bf6c7e9446589d6d" name="af9eb0c47c7aca1c5bf6c7e9446589d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9eb0c47c7aca1c5bf6c7e9446589d6d">&#9670;&#160;</a></span>Dispose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BankWebApp.Services.DatabaseService.Dispose </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The Dispose method is called when the DatabaseService object is being disposed. It closes the database connection. </p>
+
+<p class="definition">Definition at line <a class="el" href="_database_service_8cs_source.html#l00054">54</a> of file <a class="el" href="_database_service_8cs_source.html">DatabaseService.cs</a>.</p>
+
 </div>
 </div>
 <a id="a4e4d30a88895a3f051bca3aae69ac076" name="a4e4d30a88895a3f051bca3aae69ac076"></a>
@@ -209,6 +258,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 
 <p>Gets all bank accounts from the database. </p>
 <dl class="section return"><dt>Returns</dt><dd>A list of BankAccountModel objects.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00327">327</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
 
 </div>
 </div>
@@ -237,6 +288,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A BankAccountModel object.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00213">213</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
+
 </div>
 </div>
 <a id="a151b5854e357a5542c6e06a96e30bb58" name="a151b5854e357a5542c6e06a96e30bb58"></a>
@@ -263,6 +316,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A list of BankAccountModel objects.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00142">142</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
 
 </div>
 </div>
@@ -291,6 +346,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A BankAccountModel object.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00179">179</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
+
 </div>
 </div>
 <a id="a3b939bb93b07b788da2cbfde5c6ab920" name="a3b939bb93b07b788da2cbfde5c6ab920"></a>
@@ -318,6 +375,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A list of RolesModel objects.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00302">302</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
+
 </div>
 </div>
 <a id="ad6eae550bc6e29e16bcf2ee7271a6210" name="ad6eae550bc6e29e16bcf2ee7271a6210"></a>
@@ -337,6 +396,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 
 <p>Gets all transactions from the database. </p>
 <dl class="section return"><dt>Returns</dt><dd>A list of TransactionModel objects.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00374">374</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
 
 </div>
 </div>
@@ -365,6 +426,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A list of TransactionModel objects.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00411">411</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
+
 </div>
 </div>
 <a id="a0e161b45d489f9e9552b75ad93325a9f" name="a0e161b45d489f9e9552b75ad93325a9f"></a>
@@ -384,6 +447,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 
 <p>Gets all users from the database. </p>
 <dl class="section return"><dt>Returns</dt><dd>A list of UserModel objects.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00019">19</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2c4d4904b195e56a2173d5d85397fef4" name="a2c4d4904b195e56a2173d5d85397fef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c4d4904b195e56a2173d5d85397fef4">&#9670;&#160;</a></span>Ping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BankWebApp.Services.DatabaseService.Ping </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A helper method for checking if the database is alive. Mainly used for health checks. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the database is alive, false otherwise.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00450">450</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
 
 </div>
 </div>
@@ -411,6 +498,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the registration was successful, false otherwise.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00076">76</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
 
 </div>
 </div>
@@ -457,6 +546,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the transfer was successful, false otherwise.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00251">251</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
+
 </div>
 </div>
 <a id="af5bfe68697cb5aebfcdec087800d08b9" name="af5bfe68697cb5aebfcdec087800d08b9"></a>
@@ -478,11 +569,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Dispose</b> ()</td></
 <p>Gets all users from the database. </p>
 <dl class="section return"><dt>Returns</dt><dd>A list of UserModel objects.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_database_service_functions_8cs_source.html#l00061">61</a> of file <a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Services/DatabaseService.cs</li>
-<li>Services/DatabaseServiceFunctions.cs</li>
+<li>C:/Users/tomas/source/repos/BankWebApp/Services/<a class="el" href="_database_service_8cs_source.html">DatabaseService.cs</a></li>
+<li>C:/Users/tomas/source/repos/BankWebApp/Services/<a class="el" href="_database_service_functions_8cs_source.html">DatabaseServiceFunctions.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

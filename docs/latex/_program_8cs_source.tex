@@ -1,0 +1,91 @@
+\doxysection{Program.\+cs}
+\label{_program_8cs_source}\index{C:/Users/tomas/source/repos/BankWebApp/Program.cs@{C:/Users/tomas/source/repos/BankWebApp/Program.cs}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }BankWebApp.env;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }BankWebApp.Services;}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }BankWebApp}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }Program}
+\DoxyCodeLine{00010\ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Main(\textcolor{keywordtype}{string}[]\ args)}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ a\ new\ instance\ of\ the\ WebApplication\ builder\ with\ the\ provided\ command-\/line\ arguments.}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ var\ builder\ =\ WebApplication.CreateBuilder(args);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ connection\ string\ from\ appsettings.json}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ var\ connectionString\ =\ builder.Configuration.GetConnectionString(\textcolor{stringliteral}{"{}DefaultConnectionString"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ Envs.ConnectionString\ =\ connectionString!;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Register\ MVC\ controllers\ and\ views\ to\ the\ services.}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddControllersWithViews();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Register\ application-\/specific\ services\ to\ the\ services\ container.}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddSingleton<UserService>();}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddSingleton<IHttpContextAccessor,\ HttpContextAccessor>();}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddSingleton<MySignInManager>();}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddSingleton<TransferService>();}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddSingleton<DatabaseHealthService>();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddSingleton<DiskHealthService>();}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddSingleton<MemoryHealthService>();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Register\ health\ checks\ to\ the\ services\ container.}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddHealthChecks()}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AddCheck<DatabaseHealthService>(nameof(DatabaseHealthService))}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AddCheck<DiskHealthService>(nameof(DiskHealthService))}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AddCheck<MemoryHealthService>(nameof(MemoryHealthService));}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Configure\ authentication\ services\ with\ a\ custom\ scheme\ and\ cookie\ settings.}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ builder.Services.AddAuthentication(options\ =>}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.DefaultScheme\ =\ \textcolor{stringliteral}{"{}custom"{}};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.DefaultSignInScheme\ =\ \textcolor{stringliteral}{"{}custom"{}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.DefaultSignOutScheme\ =\ \textcolor{stringliteral}{"{}custom"{}};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.DefaultChallengeScheme\ =\ \textcolor{stringliteral}{"{}custom"{}};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .AddCookie(\textcolor{stringliteral}{"{}custom"{}},\ options\ =>}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.LoginPath\ =\ \textcolor{stringliteral}{"{}/Home/Login"{}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.LogoutPath\ =\ \textcolor{stringliteral}{"{}/Home/Logout"{}};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.AccessDeniedPath\ =\ \textcolor{stringliteral}{"{}/Home/AccessDenied"{}};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Build\ the\ web\ application\ instance.}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ var\ app\ =\ builder.Build();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Configure\ the\ HTTP\ request\ pipeline.}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!app.Environment.IsDevelopment())}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ non-\/development\ environments,\ use\ the\ exception\ handler\ middleware\ to\ handle\ exceptions\ globally.}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ app.UseExceptionHandler(\textcolor{stringliteral}{"{}/Home/Error"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ HSTS\ middleware\ to\ add\ the\ Strict-\/Transport-\/Security\ header\ to\ HTTP\ responses.}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ app.UseHsts();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ HTTPS\ redirection\ middleware\ to\ redirect\ HTTP\ requests\ to\ HTTPS.}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseHttpsRedirection();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ static\ files\ middleware\ to\ serve\ static\ files.}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseStaticFiles();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ routing\ middleware\ to\ route\ requests\ to\ the\ correct\ endpoint.}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseRouting();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ authorization\ middleware\ to\ authorize\ users\ based\ on\ their\ roles\ and\ claims.}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ app.UseAuthorization();}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ maps\ health\ checks\ to\ /health}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ app.MapHealthChecks(\textcolor{stringliteral}{"{}/health"{}});}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ the\ default\ controller\ route.}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ app.MapControllerRoute(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name:\ \textcolor{stringliteral}{"{}default"{}},}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pattern:\ \textcolor{stringliteral}{"{}\{controller=Home\}/\{action=Index\}/\{id?\}"{}});}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Run\ the\ application.}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ app.Run();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \}}
+
+\end{DoxyCode}

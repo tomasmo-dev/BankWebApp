@@ -1,0 +1,75 @@
+\label{index_md_C__Users_tomas_source_repos_BankWebApp_README}%
+ This is a banking web application developed using C\#, Java\+Script, and SQL.\doxysection{Project Structure}\label{index_autotoc_md1}
+The project is structured into several parts\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxyref{env/\+Envs.\+cs}{p.}{_envs_8cs}}\+: Contains the connection string for the MSSQL database.
+\item {\ttfamily database.\+sql}\+: Contains the SQL scripts for creating the necessary tables and indices in the database.
+\item {\ttfamily wwwroot/}\+: Contains the static files for the web application. (js css images)
+\item {\ttfamily docs/}\+: Contains the documentation for the project.
+\item {\ttfamily Bank\+DB-\/data/}\+: Contains the data for the MSSQL database.
+\end{DoxyItemize}\doxysection{Setup}\label{index_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item Clone the repository.
+\item Ensure that docker \& docker-\/compose is installed.
+\item Run {\ttfamily docker-\/compose up -\/d} to start the application.
+\item Enjoy!.
+\end{DoxyEnumerate}\doxysection{How to login to an admin account}\label{index_autotoc_md3}
+
+\begin{DoxyEnumerate}
+\item Open the login page
+\item Enter the following credentials\+:
+\begin{DoxyItemize}
+\item Username\+: {\ttfamily admin}
+\item Password\+: ~{\ttfamily admin}
+\end{DoxyItemize}
+\item Login.
+\item Admin tools can be accessed by clicking the new buttons in the navbar.
+\end{DoxyEnumerate}\doxysection{How to add admin access to a new user}\label{index_autotoc_md4}
+
+\begin{DoxyEnumerate}
+\item Register a new user.
+\item Open the database insert a new row into {\ttfamily User\+Roles} table
+\item Set the {\ttfamily User\+Id} to the {\ttfamily Id} of the user you want to make admin.
+\item Set the {\ttfamily Role\+Name} to {\ttfamily Admin}.
+\item Save the changes.
+\item The user should now have admin access.
+\item Admin tools can be accessed by clicking the new buttons in the navbar.
+\end{DoxyEnumerate}\doxysection{Features}\label{index_autotoc_md5}
+
+\begin{DoxyItemize}
+\item User registration and login
+\item Bank account creation
+\item Transaction processing
+\item Transaction history
+\item Admin dashboard
+\item User dashboard
+\item Automatic health Checks
+\item Automatic docker health checks
+\end{DoxyItemize}\doxysection{API Endpoints}\label{index_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\ttfamily /api/healthcheck/all} -\/ Returns the health status of all services and also an overall health status.
+\item {\ttfamily /api/healthcheck/database} -\/ Returns the health status of the database.
+\item {\ttfamily /api/healthcheck/disk} -\/ Returns if the disk has enough space.
+\item {\ttfamily /api/healthcheck/ram} -\/ Returns if the RAM has enough space.
+\end{DoxyItemize}\doxysection{Database Diagram}\label{index_autotoc_md7}
+\doxysection{Custom User Components}\label{index_autotoc_md8}
+
+\begin{DoxyItemize}
+\item {\ttfamily Navbar}\+: The navigation bar at the top of the page. made with View Component.
+\item {\ttfamily Footer}\+: The footer at the bottom of the page. made with Partial View.
+\end{DoxyItemize}\doxysection{Documentation}\label{index_autotoc_md9}
+The documentation for this project is available in the {\ttfamily docs} folder. Files in the {\ttfamily docs} folder are generated using doxygen.
+
+Available versions of the documentation\+:
+
+
+\begin{DoxyItemize}
+\item {\texttt{ PDF Documentation}}~~~~(same as the rtf version)
+\item {\texttt{ RTF Documentation}}~~~~(same as the pdf version, may give warnings about being unsafe)
+\item {\texttt{ HTML Documentation}}~(best version, but requires a browser to view)
+\item Code Comments~~~~~~~~~(in the source code) 
+\end{DoxyItemize}

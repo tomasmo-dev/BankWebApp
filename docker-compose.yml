@@ -12,6 +12,12 @@
     restart: always
     volumes:
       - BankWebAppKeys:/root/.aspnet/DataProtection-Keys
+    healthcheck:
+      test: curl -sS http://localhost:80/api/healthcheck/all | jq -e '.OverallStatusInt == 2'
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 1m
       
   bankdb:
     image: mcr.microsoft.com/azure-sql-edge
@@ -26,6 +32,12 @@
     restart: always
     volumes:
       - ./BankDB-data:/var/opt/mssql/data
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Heslo1234. -Q "SELECT 1" || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 1m
   
   #bankdb:
   #  image: mcr.microsoft.com/azure-sql-edge

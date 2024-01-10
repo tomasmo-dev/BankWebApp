@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['transfer_0',['Transfer',['../class_bank_web_app_1_1_controllers_1_1_account_controller.html#a12acba2904791ac59d92aad490ca33d6',1,'BankWebApp.Controllers.AccountController.Transfer(bool? success=null, string? reason=null)'],['../class_bank_web_app_1_1_controllers_1_1_account_controller.html#ab1e3d908e6b1cde6196cde167799a654',1,'BankWebApp.Controllers.AccountController.Transfer(TransferViewModel model)']]],
-  ['transferfunds_1',['TransferFunds',['../class_bank_web_app_1_1_services_1_1_database_service.html#a5e519b6b95924ae8eea1baa1066a5174',1,'BankWebApp::Services::DatabaseService']]],
-  ['transferservice_2',['TransferService',['../class_bank_web_app_1_1_services_1_1_transfer_service.html#acd80d73e9d5a184dbb805b3ccdb31f4f',1,'BankWebApp::Services::TransferService']]]
+  ['show_0',['Show',['../class_bank_web_app_1_1_controllers_1_1_account_controller.html#a67aae9805064d095b9944eb2aa01ba70',1,'BankWebApp::Controllers::AccountController']]],
+  ['signinasync_1',['SignInAsync',['../class_bank_web_app_1_1_services_1_1_my_sign_in_manager.html#a9c5a3fd94ea182de22e7f241be937500',1,'BankWebApp::Services::MySignInManager']]],
+  ['signoutasync_2',['SignOutAsync',['../class_bank_web_app_1_1_services_1_1_my_sign_in_manager.html#a0b749c64d85ef5d24801b9e2ae3b738c',1,'BankWebApp::Services::MySignInManager']]]
 ];

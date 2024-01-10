@@ -1,0 +1,236 @@
+\doxysection{Account\+Controller.\+cs}
+\label{_account_controller_8cs_source}\index{C:/Users/tomas/source/repos/BankWebApp/Controllers/AccountController.cs@{C:/Users/tomas/source/repos/BankWebApp/Controllers/AccountController.cs}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }BankWebApp.Models;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }BankWebApp.Services;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }BankWebApp.Tools;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Authorization;}
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }Microsoft.AspNetCore.Mvc;}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }BankWebApp.Controllers;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00013\ [Authorize]}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }AccountController\ :\ Controller}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ ILogger<AccountController>\ \_logger;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ UserService\ \_userService;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{private}\ readonly\ TransferService\ \_transferService;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{public}\ AccountController(ILogger<AccountController>\ logger,\ UserService\ userService,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TransferService\ transferService)}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \_logger\ =\ logger;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \_userService\ =\ userService;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \_transferService\ =\ transferService;}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{public}\ IActionResult\ Index()}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ users\ claims}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ var\ claims\ =\ User.Claims.ToArray();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ extract\ information\ from\ claims\ (username\ not\ needed)}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//string\ username\ =\ claims[0].Value;}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ claims[1].Value.ToInt32();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ var\ user\ =\ \_userService.GetUserById(\textcolor{keywordtype}{id})!;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ var\ bankAccounts\ =\ \_userService.GetBankAccountsById(user.Id);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ var\ model\ =\ \textcolor{keyword}{new}\ AccountIndexModel()}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ SignedInUser\ =\ user,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ BankAccounts\ =\ bankAccounts}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ View(model);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{public}\ IActionResult\ Transfer(\textcolor{keywordtype}{bool}?\ success\ =\ \textcolor{keyword}{null},\ \textcolor{keywordtype}{string}?\ reason\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ var\ model\ =\ TransferViewModel.Empty;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ var\ userId\ =\ User.Claims.ToArray()[1].Value.ToInt32();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ model.Success\ =\ success;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ model.Reason\ =\ reason;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ var\ bankAccounts\ =\ \_userService.GetBankAccountsById(userId);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ model.BankAccounts\ =\ bankAccounts;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ View(model);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ \ \ \ \ [HttpPost]}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{public}\ IActionResult\ Transfer(TransferViewModel\ model)}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ var\ success\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ var\ reason\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ if\ from\ account\ is\ valid\ and\ the\ user\ owns\ it}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ var\ fromAccount\ =\ \_userService.GetBankAccountsById(model.FromAccountId);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fromAccount\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ reason\ =\ \textcolor{stringliteral}{"{}Invalid\ account\ to\ send\ from."{}};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}Transfer"{}},\ \textcolor{keyword}{new}\ \{\ Success\ =\ success,\ Reason\ =\ reason\ \});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ var\ userId\ =\ User.Claims.ToArray()[1].Value.ToInt32();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ var\ user\ =\ \_userService.GetUserById(userId)!;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ var\ userOwnsAccount\ =\ fromAccount.UserId\ ==\ user.Id;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!userOwnsAccount)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ reason\ =\ \textcolor{stringliteral}{"{}You\ do\ not\ own\ this\ account."{}};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}Transfer"{}},\ \textcolor{keyword}{new}\ \{\ Success\ =\ success,\ Reason\ =\ reason\ \});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ now\ check\ if\ to\ account\ is\ valid}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ var\ toAccount\ =\ \_userService.GetBankAccountsById(model.ToAccountId);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (toAccount\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ reason\ =\ \textcolor{stringliteral}{"{}Invalid\ account\ to\ send\ to."{}};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}Transfer"{}},\ \textcolor{keyword}{new}\ \{\ Success\ =\ success,\ Reason\ =\ reason\ \});}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ if\ amount\ is\ valid}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (model.Amount\ <=\ 0)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ reason\ =\ \textcolor{stringliteral}{"{}Invalid\ amount\ (cannot\ be\ less\ than\ 0)."{}};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}Transfer"{}},\ \textcolor{keyword}{new}\ \{\ Success\ =\ success,\ Reason\ =\ reason\ \});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ if\ from\ account\ has\ enough\ money}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fromAccount.Balance\ <=\ model.Amount)}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ reason\ =\ \textcolor{stringliteral}{"{}Not\ enough\ money\ in\ account."{}};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}Transfer"{}},\ \textcolor{keyword}{new}\ \{\ Success\ =\ success,\ Reason\ =\ reason\ \});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ transfer\ money}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ var\ transferCheck\ =\ \_transferService.TransferMoney(fromAccount.AccountNumber,\ toAccount.AccountNumber,\ model.Amount);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}Transfer"{}},\ \textcolor{keyword}{new}\ \{\ Success\ =\ success,\ Reason\ =\ reason\ \});}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00155\ \ \ \ \ [Authorize(Roles\ =\ \textcolor{stringliteral}{"{}Admin"{}})]}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{public}\ IActionResult\ AddFunds(\textcolor{keywordtype}{bool}?\ success\ =\ \textcolor{keyword}{null},\ \textcolor{keywordtype}{string}?\ reason\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00157\ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ var\ model\ =\ \textcolor{keyword}{new}\ AddFundsViewModel()}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ BankAccounts\ =\ \_userService.GetAllBankAccounts(),}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ Success\ =\ success,}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ Reason\ =\ reason}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ View(model);}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00172\ \ \ \ \ [HttpPost]}
+\DoxyCodeLine{00173\ \ \ \ \ [Authorize(Roles\ =\ \textcolor{stringliteral}{"{}Admin"{}})]}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{public}\ IActionResult\ AddFunds(AddFundsViewModel\ model)}
+\DoxyCodeLine{00175\ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ reason\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ if\ such\ account\ exists}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ var\ bankAccount\ =\ \_userService.GetBankAccountsById(model.SelectedBankAccountNumber);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bankAccount\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ reason\ =\ \textcolor{stringliteral}{"{}Invalid\ account."{}};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}AddFunds"{}},\ \textcolor{keyword}{new}\ \{\ Success\ =\ success,\ Reason\ =\ reason\ \});}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ if\ amount\ is\ valid}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (model.Amount\ <=\ 0)}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ reason\ =\ \textcolor{stringliteral}{"{}Invalid\ amount\ (cannot\ be\ less\ than\ 0)."{}};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}AddFunds"{}},\ \textcolor{keyword}{new}\ \{\ Success\ =\ success,\ Reason\ =\ reason\ \});}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ add\ funds}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \_transferService.PrintMoney(model.SelectedBankAccountNumber,\ model.Amount);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}AddFunds"{}},\ \textcolor{keyword}{new}\ \{\ Success\ =\ success,\ Reason\ =\ reason\ \});}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00208\ \ \ \ \ [Authorize(Roles\ =\ \textcolor{stringliteral}{"{}Admin"{}})]}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{public}\ IActionResult\ ListUsers()}
+\DoxyCodeLine{00210\ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ var\ model\ =\ \textcolor{keyword}{new}\ List<ListUsersViewModel>();}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ var\ users\ =\ \_userService.GetUsers();}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ user\ \textcolor{keywordflow}{in}\ users)}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ ListUsersViewModel\ userViewModel\ =\ \textcolor{keyword}{new}()}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UserModel\ =\ user,}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BankAccounts\ =\ \_userService.GetBankAccountsById(user.Id)}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ model.Add(userViewModel);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ View(model);}
+\DoxyCodeLine{00227\ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00234\ \ \ \ \ [Authorize(Roles\ =\ \textcolor{stringliteral}{"{}Admin"{}})]}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{public}\ IActionResult\ Show(\textcolor{keywordtype}{string}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00236\ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{int}.TryParse(\textcolor{keywordtype}{id},\ out\ \_))}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RedirectToAction(\textcolor{stringliteral}{"{}ListUsers"{}});}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ var\ user\ =\ \_userService.GetUserById(\textcolor{keywordtype}{int}.Parse(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ var\ bankAccounts\ =\ \_userService.GetBankAccountsById(user!.Id);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ var\ transactions\ =\ bankAccounts.ToList().SelectMany(bankAccount\ =>}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \_userService.GetTransactionsByAccountId(bankAccount.Id)).ToList();}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ var\ model\ =\ \textcolor{keyword}{new}\ ListUsersViewModel()}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ UserModel\ =\ user,}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ BankAccounts\ =\ bankAccounts,}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ Transactions\ =\ transactions,}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ View(model);}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{public}\ IActionResult\ History()}
+\DoxyCodeLine{00264\ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ AccountHistoryModel\ model\ =\ \textcolor{keyword}{new}();}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ var\ myId\ =\ (User.Claims.ToArray()[1].Value).ToInt32();}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ var\ bankAccounts\ =\ \_userService.GetBankAccountsById(myId);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ get\ all\ transactions\ from\ all\ bank\ accounts}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ var\ transactions\ =\ bankAccounts.ToList().SelectMany(bankAccount\ =>}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \_userService.GetTransactionsByAccountId(bankAccount.Id)).ToList();}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ model.Transactions\ =\ transactions;}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ View(model);}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \}}
+
+\end{DoxyCode}

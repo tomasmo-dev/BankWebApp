@@ -29,8 +29,15 @@ namespace BankWebApp
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddSingleton<MySignInManager>();
             builder.Services.AddSingleton<TransferService>();
+            builder.Services.AddSingleton<DatabaseHealthService>();
+            builder.Services.AddSingleton<DiskHealthService>();
+            builder.Services.AddSingleton<MemoryHealthService>();
 
-            
+            // Register health checks to the services container.
+            builder.Services.AddHealthChecks()
+                .AddCheck<DatabaseHealthService>(nameof(DatabaseHealthService))
+                .AddCheck<DiskHealthService>(nameof(DiskHealthService))
+                .AddCheck<MemoryHealthService>(nameof(MemoryHealthService));
 
             // Configure authentication services with a custom scheme and cookie settings.
             builder.Services.AddAuthentication(options =>
@@ -69,6 +76,9 @@ namespace BankWebApp
 
             // Use authorization middleware to authorize users based on their roles and claims.
             app.UseAuthorization();
+            
+            // maps health checks to /health
+            app.MapHealthChecks("/health");
 
             // Map the default controller route.
             app.MapControllerRoute(

@@ -1,0 +1,36 @@
+\doxysection{Database\+Health\+Service.\+cs}
+\label{_database_health_service_8cs_source}\index{C:/Users/tomas/source/repos/BankWebApp/Services/DatabaseHealthService.cs@{C:/Users/tomas/source/repos/BankWebApp/Services/DatabaseHealthService.cs}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }Microsoft.Extensions.Diagnostics.HealthChecks;}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }BankWebApp.Services;}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }DatabaseHealthService:\ IHealthCheck}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{public}\ Task<HealthCheckResult>\ CheckHealthAsync(HealthCheckContext\ context,\ CancellationToken\ cancellationToken\ =\ \textcolor{keyword}{new}\ CancellationToken())}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ alive;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ db\ =\ \textcolor{keyword}{new}\ DatabaseService())}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alive\ =\ db.Ping();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!alive)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Task.FromResult(\textcolor{keyword}{new}\ HealthCheckResult(HealthStatus.Unhealthy,\ \textcolor{stringliteral}{"{}Failed\ to\ connect\ to\ database."{}}));}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Task.FromResult(\textcolor{keyword}{new}\ HealthCheckResult(HealthStatus.Healthy,\ \textcolor{stringliteral}{"{}Database\ connection\ is\ healthy."{}}));}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Task.FromResult(\textcolor{keyword}{new}\ HealthCheckResult(HealthStatus.Unhealthy,\ \textcolor{stringliteral}{"{}Failed\ to\ connect\ to\ database.\ (Exception)"{}},\ e));}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \}}
+
+\end{DoxyCode}

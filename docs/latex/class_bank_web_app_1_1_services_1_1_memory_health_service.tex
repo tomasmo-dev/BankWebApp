@@ -1,0 +1,62 @@
+\doxysection{Bank\+Web\+App.\+Services.\+Memory\+Health\+Service Class Reference}
+\label{class_bank_web_app_1_1_services_1_1_memory_health_service}\index{BankWebApp.Services.MemoryHealthService@{BankWebApp.Services.MemoryHealthService}}
+
+
+Class Memory\+Health\+Service. Implements the Microsoft.\+Extensions.\+Diagnostics.\+Health\+Checks.\+IHealth\+Check interface. Used to check if the RAM has enough free space.  
+
+
+Inheritance diagram for Bank\+Web\+App.\+Services.\+Memory\+Health\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_bank_web_app_1_1_services_1_1_memory_health_service}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ Health\+Check\+Result $>$ \textbf{ Check\+Health\+Async} (Health\+Check\+Context context, Cancellation\+Token cancellation\+Token)
+\begin{DoxyCompactList}\small\item\em Checks the remaining space in the memory asynchronously. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class Memory\+Health\+Service. Implements the Microsoft.\+Extensions.\+Diagnostics.\+Health\+Checks.\+IHealth\+Check interface. Used to check if the RAM has enough free space. 
+
+Definition at line \textbf{ 11} of file \textbf{ Memory\+Health\+Service.\+cs}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_bank_web_app_1_1_services_1_1_memory_health_service_a1ff7d302f63c8ceb82ba2b2c74475e80}} 
+\index{BankWebApp.Services.MemoryHealthService@{BankWebApp.Services.MemoryHealthService}!CheckHealthAsync@{CheckHealthAsync}}
+\index{CheckHealthAsync@{CheckHealthAsync}!BankWebApp.Services.MemoryHealthService@{BankWebApp.Services.MemoryHealthService}}
+\doxysubsubsection{CheckHealthAsync()}
+{\footnotesize\ttfamily Task$<$ Health\+Check\+Result $>$ Bank\+Web\+App.\+Services.\+Memory\+Health\+Service.\+Check\+Health\+Async (\begin{DoxyParamCaption}\item[{Health\+Check\+Context}]{context,  }\item[{Cancellation\+Token}]{cancellation\+Token }\end{DoxyParamCaption})}
+
+
+
+Checks the remaining space in the memory asynchronously. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The context.\\
+\hline
+{\em cancellation\+Token} & The cancellation token.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Task representing the asynchronous operation. The Task result contains the Health\+Check\+Result.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Thrown when failed to check memory health.\\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \textbf{ 32} of file \textbf{ Memory\+Health\+Service.\+cs}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/tomas/source/repos/\+Bank\+Web\+App/\+Services/\textbf{ Memory\+Health\+Service.\+cs}\end{DoxyCompactItemize}

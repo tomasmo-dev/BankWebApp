@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['username_0',['Username',['../class_bank_web_app_1_1_models_1_1_user_model.html#a93052c9f310c10a045e6e685d5fdbfc5',1,'BankWebApp::Models::UserModel']]]
+  ['fromaccountid_0',['FromAccountId',['../class_bank_web_app_1_1_models_1_1_transfer_view_model.html#a8e43c085a5a16714c8b7f8bd1bb600f4',1,'BankWebApp::Models::TransferViewModel']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['listusers_0',['ListUsers',['../class_bank_web_app_1_1_controllers_1_1_account_controller.html#aa365cf345c0b6b8683a4a17e572620cb',1,'BankWebApp::Controllers::AccountController']]],
-  ['login_1',['Login',['../class_bank_web_app_1_1_controllers_1_1_home_controller.html#a9de4da938f8bb494c3b200981efa0add',1,'BankWebApp.Controllers.HomeController.Login()'],['../class_bank_web_app_1_1_controllers_1_1_home_controller.html#a08c037fb24fcbac67bf74e2b59bdbdaa',1,'BankWebApp.Controllers.HomeController.Login(LoginModel loginModel)']]],
-  ['logout_2',['Logout',['../class_bank_web_app_1_1_controllers_1_1_home_controller.html#aff4fa5b6e90f2e450223bc689ae775d3',1,'BankWebApp::Controllers::HomeController']]]
+  ['index_0',['Index',['../class_bank_web_app_1_1_controllers_1_1_account_controller.html#ab44317b210fdd2de018a30963c49e4bb',1,'BankWebApp.Controllers.AccountController.Index()'],['../class_bank_web_app_1_1_controllers_1_1_home_controller.html#a2dc70109e8c11f19e8c7716531504fad',1,'BankWebApp.Controllers.HomeController.Index()']]],
+  ['invoke_1',['Invoke',['../class_bank_web_app_1_1_components_1_1_navbar_view_component.html#a5e5038507426e15ca205a3c0bacaba9c',1,'BankWebApp::Components::NavbarViewComponent']]]
 ];

@@ -1,0 +1,98 @@
+\doxysection{Bank\+Web\+App.\+Services.\+My\+Sign\+In\+Manager Class Reference}
+\label{class_bank_web_app_1_1_services_1_1_my_sign_in_manager}\index{BankWebApp.Services.MySignInManager@{BankWebApp.Services.MySignInManager}}
+
+
+This class is responsible for managing user sign in and sign out operations.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ My\+Sign\+In\+Manager} (IHttp\+Context\+Accessor http\+Context\+Accessor, \textbf{ User\+Service} user\+Service)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the My\+Sign\+In\+Manager class. \end{DoxyCompactList}\item 
+async Task \textbf{ Sign\+In\+Async} (\textbf{ User\+Model} user, bool is\+Persistent=false)
+\begin{DoxyCompactList}\small\item\em Signs in the specified user. \end{DoxyCompactList}\item 
+async Task \textbf{ Sign\+Out\+Async} ()
+\begin{DoxyCompactList}\small\item\em Signs out the current user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is responsible for managing user sign in and sign out operations. 
+
+Definition at line \textbf{ 10} of file \textbf{ My\+Sign\+In\+Manager.\+cs}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_bank_web_app_1_1_services_1_1_my_sign_in_manager_ada3020c56365bbc5dc572f9b319749fe}} 
+\index{BankWebApp.Services.MySignInManager@{BankWebApp.Services.MySignInManager}!MySignInManager@{MySignInManager}}
+\index{MySignInManager@{MySignInManager}!BankWebApp.Services.MySignInManager@{BankWebApp.Services.MySignInManager}}
+\doxysubsubsection{MySignInManager()}
+{\footnotesize\ttfamily Bank\+Web\+App.\+Services.\+My\+Sign\+In\+Manager.\+My\+Sign\+In\+Manager (\begin{DoxyParamCaption}\item[{IHttp\+Context\+Accessor}]{http\+Context\+Accessor,  }\item[{\textbf{ User\+Service}}]{user\+Service }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the My\+Sign\+In\+Manager class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em http\+Context\+Accessor} & The HTTP context accessor.\\
+\hline
+{\em user\+Service} & The user service.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 20} of file \textbf{ My\+Sign\+In\+Manager.\+cs}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_bank_web_app_1_1_services_1_1_my_sign_in_manager_a9c5a3fd94ea182de22e7f241be937500}} 
+\index{BankWebApp.Services.MySignInManager@{BankWebApp.Services.MySignInManager}!SignInAsync@{SignInAsync}}
+\index{SignInAsync@{SignInAsync}!BankWebApp.Services.MySignInManager@{BankWebApp.Services.MySignInManager}}
+\doxysubsubsection{SignInAsync()}
+{\footnotesize\ttfamily async Task Bank\+Web\+App.\+Services.\+My\+Sign\+In\+Manager.\+Sign\+In\+Async (\begin{DoxyParamCaption}\item[{\textbf{ User\+Model}}]{user,  }\item[{bool}]{is\+Persistent = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Signs in the specified user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user to sign in.\\
+\hline
+{\em is\+Persistent} & if set to {\ttfamily true} the sign in is persistent.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Task representing the asynchronous operation.
+\end{DoxyReturn}
+
+
+The user model should already be validated before calling this method. 
+
+Definition at line \textbf{ 35} of file \textbf{ My\+Sign\+In\+Manager.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_my_sign_in_manager_a0b749c64d85ef5d24801b9e2ae3b738c}} 
+\index{BankWebApp.Services.MySignInManager@{BankWebApp.Services.MySignInManager}!SignOutAsync@{SignOutAsync}}
+\index{SignOutAsync@{SignOutAsync}!BankWebApp.Services.MySignInManager@{BankWebApp.Services.MySignInManager}}
+\doxysubsubsection{SignOutAsync()}
+{\footnotesize\ttfamily async Task Bank\+Web\+App.\+Services.\+My\+Sign\+In\+Manager.\+Sign\+Out\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Signs out the current user. 
+
+\begin{DoxyReturn}{Returns}
+A Task representing the asynchronous operation.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 68} of file \textbf{ My\+Sign\+In\+Manager.\+cs}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/tomas/source/repos/\+Bank\+Web\+App/\+Services/\textbf{ My\+Sign\+In\+Manager.\+cs}\end{DoxyCompactItemize}

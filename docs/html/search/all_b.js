@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['passwordhash_0',['PasswordHash',['../class_bank_web_app_1_1_models_1_1_user_model.html#a7f763b4583f34f184cb47f078c5ed28e',1,'BankWebApp::Models::UserModel']]],
-  ['printmoney_1',['PrintMoney',['../class_bank_web_app_1_1_services_1_1_transfer_service.html#aeb92924ccd7015f8cdd6c7f7467dba4b',1,'BankWebApp::Services::TransferService']]],
-  ['privacy_2',['Privacy',['../class_bank_web_app_1_1_controllers_1_1_home_controller.html#a7a1e33224317ac8cb40d3792cb5e5e2b',1,'BankWebApp::Controllers::HomeController']]],
-  ['program_3',['Program',['../class_bank_web_app_1_1_program.html',1,'BankWebApp']]]
+  ['main_0',['Main',['../class_bank_web_app_1_1_program.html#a8c9bf2f1cc8c6db0aad85d79fd710b2e',1,'BankWebApp::Program']]],
+  ['memoryhealthservice_1',['MemoryHealthService',['../class_bank_web_app_1_1_services_1_1_memory_health_service.html',1,'BankWebApp::Services']]],
+  ['memoryhealthservice_2ecs_2',['MemoryHealthService.cs',['../_memory_health_service_8cs.html',1,'']]],
+  ['mysigninmanager_3',['MySignInManager',['../class_bank_web_app_1_1_services_1_1_my_sign_in_manager.html',1,'BankWebApp.Services.MySignInManager'],['../class_bank_web_app_1_1_services_1_1_my_sign_in_manager.html#ada3020c56365bbc5dc572f9b319749fe',1,'BankWebApp.Services.MySignInManager.MySignInManager()']]],
+  ['mysigninmanager_2ecs_4',['MySignInManager.cs',['../_my_sign_in_manager_8cs.html',1,'']]]
 ];

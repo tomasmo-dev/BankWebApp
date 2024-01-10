@@ -11,6 +11,7 @@ var class_bank_web_app_1_1_services_1_1_database_service =
     [ "GetTransactions", "class_bank_web_app_1_1_services_1_1_database_service.html#ad6eae550bc6e29e16bcf2ee7271a6210", null ],
     [ "GetTransactions", "class_bank_web_app_1_1_services_1_1_database_service.html#a0fa5df5d9ca68a0924a905669e45a38d", null ],
     [ "GetUsers", "class_bank_web_app_1_1_services_1_1_database_service.html#a0e161b45d489f9e9552b75ad93325a9f", null ],
+    [ "Ping", "class_bank_web_app_1_1_services_1_1_database_service.html#a2c4d4904b195e56a2173d5d85397fef4", null ],
     [ "RegisterUser", "class_bank_web_app_1_1_services_1_1_database_service.html#aeab7003b6483d1e2abd726a8e6726f9b", null ],
     [ "TransferFunds", "class_bank_web_app_1_1_services_1_1_database_service.html#a5e519b6b95924ae8eea1baa1066a5174", null ],
     [ "UsernameExists", "class_bank_web_app_1_1_services_1_1_database_service.html#af5bfe68697cb5aebfcdec087800d08b9", null ]

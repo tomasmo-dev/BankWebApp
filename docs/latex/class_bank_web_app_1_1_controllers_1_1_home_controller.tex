@@ -1,0 +1,235 @@
+\doxysection{Bank\+Web\+App.\+Controllers.\+Home\+Controller Class Reference}
+\label{class_bank_web_app_1_1_controllers_1_1_home_controller}\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+Inheritance diagram for Bank\+Web\+App.\+Controllers.\+Home\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_bank_web_app_1_1_controllers_1_1_home_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Home\+Controller} (ILogger$<$ \textbf{ Home\+Controller} $>$ logger, \textbf{ User\+Service} user\+Service, \textbf{ My\+Sign\+In\+Manager} sign\+In\+Manager)
+\begin{DoxyCompactList}\small\item\em Home\+Controller constructor. Initializes a new instance of the Home\+Controller class. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Index} ()
+\begin{DoxyCompactList}\small\item\em Handles the GET request for the Index view. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Privacy} ()
+\begin{DoxyCompactList}\small\item\em Handles the GET request for the Privacy view. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Login} ()
+\begin{DoxyCompactList}\small\item\em Handles the GET request for the Login view. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Login} (\textbf{ Login\+Model} login\+Model)
+\begin{DoxyCompactList}\small\item\em Handles the POST request for the Login view. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Logout} ()
+\begin{DoxyCompactList}\small\item\em Handles the request to log out the user. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Error} ()
+\begin{DoxyCompactList}\small\item\em Handles the GET request for the Error view. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Access\+Denied} ()
+\begin{DoxyCompactList}\small\item\em Handles the request when the user is denied access. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Register} ()
+\begin{DoxyCompactList}\small\item\em Handles the GET request for the Register view. \end{DoxyCompactList}\item 
+IAction\+Result \textbf{ Register} (\textbf{ Register\+Model} register\+Model)
+\begin{DoxyCompactList}\small\item\em Handles the POST request for the Register view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \textbf{ 13} of file \textbf{ Home\+Controller.\+cs}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_a833b3291eb43358e312a62cb1b734b36}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!HomeController@{HomeController}}
+\index{HomeController@{HomeController}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{HomeController()}
+{\footnotesize\ttfamily Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Home\+Controller (\begin{DoxyParamCaption}\item[{ILogger$<$ \textbf{ Home\+Controller} $>$}]{logger,  }\item[{\textbf{ User\+Service}}]{user\+Service,  }\item[{\textbf{ My\+Sign\+In\+Manager}}]{sign\+In\+Manager }\end{DoxyParamCaption})}
+
+
+
+Home\+Controller constructor. Initializes a new instance of the Home\+Controller class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em logger} & An instance of ILogger interface to handle logging.\\
+\hline
+{\em user\+Service} & An instance of User\+Service to handle user related operations.\\
+\hline
+{\em sign\+In\+Manager} & An instance of My\+Sign\+In\+Manager to handle user sign in operations.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 26} of file \textbf{ Home\+Controller.\+cs}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_acdbfc252e3906337d83385ea547a28e4}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!AccessDenied@{AccessDenied}}
+\index{AccessDenied@{AccessDenied}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{AccessDenied()}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Access\+Denied (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles the request when the user is denied access. 
+
+\begin{DoxyReturn}{Returns}
+The Error view along with the request id.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 132} of file \textbf{ Home\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_aefa5682b73d3a190430b73d56154cbf0}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!Error@{Error}}
+\index{Error@{Error}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{Error()}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles the GET request for the Error view. 
+
+\begin{DoxyReturn}{Returns}
+The Error view along with the request id.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 123} of file \textbf{ Home\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_a2dc70109e8c11f19e8c7716531504fad}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!Index@{Index}}
+\index{Index@{Index}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{Index()}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles the GET request for the Index view. 
+
+\begin{DoxyReturn}{Returns}
+The Index view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 37} of file \textbf{ Home\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_a9de4da938f8bb494c3b200981efa0add}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!Login@{Login}}
+\index{Login@{Login}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{Login()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Login (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles the GET request for the Login view. 
+
+\begin{DoxyReturn}{Returns}
+The Login view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 55} of file \textbf{ Home\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_a08c037fb24fcbac67bf74e2b59bdbdaa}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!Login@{Login}}
+\index{Login@{Login}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{Login()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Login (\begin{DoxyParamCaption}\item[{\textbf{ Login\+Model}}]{login\+Model }\end{DoxyParamCaption})}
+
+
+
+Handles the POST request for the Login view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em login\+Model} & The login details provided by the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Login view if the model state is invalid, otherwise redirects to the appropriate view based on the login details.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 66} of file \textbf{ Home\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_aff4fa5b6e90f2e450223bc689ae775d3}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!Logout@{Logout}}
+\index{Logout@{Logout}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{Logout()}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Logout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles the request to log out the user. 
+
+\begin{DoxyReturn}{Returns}
+Redirects to the Login view after successfully logging out the user.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 106} of file \textbf{ Home\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_a7a1e33224317ac8cb40d3792cb5e5e2b}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!Privacy@{Privacy}}
+\index{Privacy@{Privacy}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{Privacy()}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Privacy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles the GET request for the Privacy view. 
+
+\begin{DoxyReturn}{Returns}
+The Privacy view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 46} of file \textbf{ Home\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_a6c742a08bbdcb7f5167443f798c34df0}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!Register@{Register}}
+\index{Register@{Register}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{Register()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Register (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles the GET request for the Register view. 
+
+\begin{DoxyReturn}{Returns}
+The Register view.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 141} of file \textbf{ Home\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_home_controller_a21d221693b3b3db137cbf49e9c26c1bd}} 
+\index{BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}!Register@{Register}}
+\index{Register@{Register}!BankWebApp.Controllers.HomeController@{BankWebApp.Controllers.HomeController}}
+\doxysubsubsection{Register()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily IAction\+Result Bank\+Web\+App.\+Controllers.\+Home\+Controller.\+Register (\begin{DoxyParamCaption}\item[{\textbf{ Register\+Model}}]{register\+Model }\end{DoxyParamCaption})}
+
+
+
+Handles the POST request for the Register view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em register\+Model} & The registration details provided by the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Register view if the model state is invalid, otherwise redirects to the Login view after successful registration.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 152} of file \textbf{ Home\+Controller.\+cs}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/tomas/source/repos/\+Bank\+Web\+App/\+Controllers/\textbf{ Home\+Controller.\+cs}\end{DoxyCompactItemize}

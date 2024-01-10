@@ -441,4 +441,36 @@ public partial class DatabaseService
         
         return transactions;
     }
+
+    /// <summary>
+    /// A helper method for checking if the database is alive.
+    /// Mainly used for health checks.
+    /// </summary>
+    /// <returns>True if the database is alive, false otherwise.</returns>
+    public bool Ping()
+    {
+        try
+        {
+            var sql = "SELECT 1";
+            using (var cmd = new SqlCommand(sql, _connection))
+            {
+                var response = cmd.ExecuteScalar();
+                    
+                // check if the response is 1
+                if (response is int i && i == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+                
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
 }

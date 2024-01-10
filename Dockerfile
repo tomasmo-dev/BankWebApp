@@ -19,4 +19,9 @@ RUN dotnet publish "BankWebApp.csproj" -c $BUILD_CONFIGURATION -o /app/publish /
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+RUN apt-get update -y
+RUN apt-get install -y curl
+RUN apt-get install -y jq
+
 ENTRYPOINT ["dotnet", "BankWebApp.dll"]

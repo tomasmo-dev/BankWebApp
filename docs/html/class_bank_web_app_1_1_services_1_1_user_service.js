@@ -10,5 +10,6 @@ var class_bank_web_app_1_1_services_1_1_user_service =
     [ "GetUserById", "class_bank_web_app_1_1_services_1_1_user_service.html#acff4837175b8de8b6a8d35aa3e3dd636", null ],
     [ "GetUserByUsername", "class_bank_web_app_1_1_services_1_1_user_service.html#a293d7161740f5f49e3e37a692a2b5d4f", null ],
     [ "GetUsers", "class_bank_web_app_1_1_services_1_1_user_service.html#ad4625be89edce039e046907beb9a4b37", null ],
+    [ "RegisterUser", "class_bank_web_app_1_1_services_1_1_user_service.html#a7fa92d1ed2132cba88e364ea649a9eeb", null ],
     [ "success", "class_bank_web_app_1_1_services_1_1_user_service.html#ac83258ce208f57a1ef36294e160ced80", null ]
 ];

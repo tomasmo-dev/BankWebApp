@@ -1,0 +1,28 @@
+\doxysection{Bank\+Web\+App.\+Services Namespace Reference}
+\label{namespace_bank_web_app_1_1_services}\index{BankWebApp.Services@{BankWebApp.Services}}
+
+
+The Database\+Service class is responsible for managing the database connection. It implements the IDisposable interface to properly close the connection when it\textquotesingle{}s no longer needed.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Database\+Health\+Service}
+\begin{DoxyCompactList}\small\item\em Service for checking the health of the database. Implements the Microsoft.\+Extensions.\+Diagnostics.\+Health\+Checks.\+IHealth\+Check interface. \end{DoxyCompactList}\item 
+class \textbf{ Database\+Service}
+\begin{DoxyCompactList}\small\item\em The Database\+Service class is responsible for managing the database operations. It contains methods for getting users, checking if a username exists, registering a user, getting bank accounts by user id, transferring funds, getting roles by user id, getting all bank accounts, adding funds, and getting transactions. \end{DoxyCompactList}\item 
+class \textbf{ Disk\+Health\+Service}
+\begin{DoxyCompactList}\small\item\em Class Disk\+Health\+Service. Implements the Microsoft.\+Extensions.\+Diagnostics.\+Health\+Checks.\+IHealth\+Check interface. Used to check if the disk has enough free space. \end{DoxyCompactList}\item 
+class \textbf{ Memory\+Health\+Service}
+\begin{DoxyCompactList}\small\item\em Class Memory\+Health\+Service. Implements the Microsoft.\+Extensions.\+Diagnostics.\+Health\+Checks.\+IHealth\+Check interface. Used to check if the RAM has enough free space. \end{DoxyCompactList}\item 
+class \textbf{ My\+Sign\+In\+Manager}
+\begin{DoxyCompactList}\small\item\em This class is responsible for managing user sign in and sign out operations. \end{DoxyCompactList}\item 
+class \textbf{ Transfer\+Service}
+\begin{DoxyCompactList}\small\item\em This class provides services for transferring money between bank accounts. \end{DoxyCompactList}\item 
+class \textbf{ User\+Service}
+\begin{DoxyCompactList}\small\item\em Service class for managing users. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The Database\+Service class is responsible for managing the database connection. It implements the IDisposable interface to properly close the connection when it\textquotesingle{}s no longer needed. 

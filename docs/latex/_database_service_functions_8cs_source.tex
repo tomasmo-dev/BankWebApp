@@ -1,0 +1,415 @@
+\doxysection{Database\+Service\+Functions.\+cs}
+\label{_database_service_functions_8cs_source}\index{C:/Users/tomas/source/repos/BankWebApp/Services/DatabaseServiceFunctions.cs@{C:/Users/tomas/source/repos/BankWebApp/Services/DatabaseServiceFunctions.cs}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{using\ }System.Data;}
+\DoxyCodeLine{00002\ \textcolor{keyword}{using\ }BankWebApp.env;}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ }BankWebApp.Models;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ }Microsoft.Data.SqlClient;}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }BankWebApp.Services;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}\ \textcolor{keyword}{partial\ class\ }DatabaseService}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}\ IList<UserModel>\ GetUsers()}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ var\ users\ =\ \textcolor{keyword}{new}\ List<UserModel>();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ [Users].Id,\ [Users].Username,\ [Users].PasswordHash,\ [Users].CreatedAt,\ [Users].ContactId,\ [Users].AddressId,\ "{}}\ +}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[Contacts].Email,\ [Contacts].PhoneNumber,\ "{}}\ +}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[Addresses].Street,\ [Addresses].City,\ [Addresses].PostCode,\ [Addresses].Country\ "{}}\ +}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}FROM\ [Users]\ "{}}\ +}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INNER\ JOIN\ [Contacts]\ ON\ [Users].[ContactId]\ =\ [Contacts].[Id]\ "{}}\ +}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INNER\ JOIN\ [Addresses]\ ON\ [Users].[AddressId]\ =\ [Addresses].[Id]"{}};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ users.Add(\textcolor{keyword}{new}\ UserModel}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(0),}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Username\ =\ reader.GetString(1),}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PasswordHash\ =\ reader.GetString(2),}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CreatedAt\ =\ reader.GetDateTime(3),}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Contact\ =\ \textcolor{keyword}{new}\ ContactModel}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Email\ =\ reader.GetString(6),}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PhoneNumber\ =\ reader.GetString(7)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Address\ =\ \textcolor{keyword}{new}\ AddressModel}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Street\ =\ reader.GetString(8),}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ City\ =\ reader.GetString(9),}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PostCode\ =\ reader.GetString(10),}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Country\ =\ reader.GetString(11)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ users;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ UsernameExists(\textcolor{keywordtype}{string}\ \_username)}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ Username\ FROM\ Users\ WHERE\ Username\ =\ @username"{}};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@username"{}},\ \_username);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ var\ result\ =\ cmd.ExecuteScalar();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result\ !=\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ RegisterUser(UserModel\ user)}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (SqlConnection\ con\ =\ \textcolor{keyword}{new}\ SqlConnection(Envs.ConnectionString))}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ con.Open();}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ var\ transaction\ =\ con.BeginTransaction();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Insert\ contact}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ Contacts\ (Email,\ PhoneNumber)\ OUTPUT\ INSERTED.Id\ VALUES\ (@Email,\ @PhoneNumber)"{}};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ con);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Email"{}},\ user.Contact.Email);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@PhoneNumber"{}},\ user.Contact.PhoneNumber);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Transaction\ =\ transaction;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ contactId\ =\ (int)cmd.ExecuteScalar();}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Insert\ address}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sql\ =}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INSERT\ INTO\ Addresses\ (Street,\ City,\ PostCode,\ Country)\ OUTPUT\ INSERTED.Id\ VALUES\ (@Street,\ @City,\ @PostCode,\ @Country)"{}};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ con);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Street"{}},\ user.Address.Street);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@City"{}},\ user.Address.City);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@PostCode"{}},\ user.Address.PostCode);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Country"{}},\ user.Address.Country);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Transaction\ =\ transaction;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ addressId\ =\ (int)cmd.ExecuteScalar();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Insert\ user}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sql\ =}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}INSERT\ INTO\ Users\ (Username,\ PasswordHash,\ CreatedAt,\ ContactId,\ AddressId)\ OUTPUT\ INSERTED.Id\ VALUES\ (@Username,\ @PasswordHash,\ @CreatedAt,\ @ContactId,\ @AddressId)"{}};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ con);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Username"{}},\ user.Username);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@PasswordHash"{}},\ user.PasswordHash);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@CreatedAt"{}},\ DateTime.Now);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@ContactId"{}},\ contactId);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@AddressId"{}},\ addressId);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Transaction\ =\ transaction;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ userId\ =\ cmd.ExecuteScalar();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ BankAccount\ (UserId,\ AccountNumber,\ Balance)\ VALUES\ (@UserId,\ @AccountNumber,\ 0)"{}};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ con);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@UserId"{}},\ userId);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@AccountNumber"{}},\ Guid.NewGuid());}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Transaction\ =\ transaction;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.ExecuteNonQuery();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Commit();}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{public}\ IList<BankAccountModel>?\ GetBankAccountById(\textcolor{keywordtype}{int}\ UserId)}
+\DoxyCodeLine{00143\ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ List<BankAccountModel>\ accounts\ =\ \textcolor{keyword}{new}\ List<BankAccountModel>();}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ Id,\ AccountNumber,\ Balance,\ UserId\ FROM\ BankAccount\ WHERE\ UserId\ =\ @Id"{}};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ UserId);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read())}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ accounts.Add(\textcolor{keyword}{new}\ BankAccountModel}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(0),}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AccountNumber\ =\ reader.GetString(1),}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Balance\ =\ reader.GetDecimal(2),}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UserId\ =\ reader.GetInt32(3)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ var\ users\ =\ GetUsers();}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ account\ \textcolor{keywordflow}{in}\ accounts)}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ account.User\ =\ users.First(u\ =>\ u.Id\ ==\ account.UserId);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ reader.Close();}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ accounts.Count\ >\ 0\ ?\ accounts\ :\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{public}\ BankAccountModel?\ GetBankAccountById(\textcolor{keywordtype}{string}\ Id)}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ Id,\ AccountNumber,\ Balance,\ UserId\ FROM\ BankAccount\ WHERE\ AccountNumber\ =\ @Id"{}};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ Id);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read())}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ \textcolor{keyword}{new}\ BankAccountModel}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(0),}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AccountNumber\ =\ reader.GetString(1),}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Balance\ =\ reader.GetDecimal(2),}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UserId\ =\ reader.GetInt32(3)}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ var\ users\ =\ GetUsers();}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ result.User\ =\ users.First(u\ =>\ u.Id\ ==\ result.UserId);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ reader.Close();}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{public}\ BankAccountModel?\ GetBankAccountByAccountId(\textcolor{keywordtype}{int}\ Id)}
+\DoxyCodeLine{00214\ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ Id,\ AccountNumber,\ Balance,\ UserId\ FROM\ BankAccount\ WHERE\ Id\ =\ @Id"{}};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ Id);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reader.Read())}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ var\ result\ =\ \textcolor{keyword}{new}\ BankAccountModel}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(0),}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AccountNumber\ =\ reader.GetString(1),}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Balance\ =\ reader.GetDecimal(2),}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UserId\ =\ reader.GetInt32(3)}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ var\ users\ =\ GetUsers();}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ result.User\ =\ users.First(u\ =>\ u.Id\ ==\ result.UserId);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ reader.Close();}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ TransferFunds(Guid\ from,\ Guid\ To,\ decimal\ Amount)}
+\DoxyCodeLine{00252\ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ var\ fromAccount\ =\ GetBankAccountById(from.ToString());}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ var\ toAccount\ =\ GetBankAccountById(To.ToString());}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (SqlConnection\ con\ =\ \textcolor{keyword}{new}\ SqlConnection(Envs.ConnectionString))}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ con.Open();}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ SqlTransaction\ transaction\ =\ con.BeginTransaction();}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ BankAccount\ SET\ Balance\ =\ Balance\ -\/\ @Amount\ WHERE\ AccountNumber\ =\ @From"{}};}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ con);}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Amount"{}},\ Amount);}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@From"{}},\ from);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Transaction\ =\ transaction;}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.ExecuteNonQuery();}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ BankAccount\ SET\ Balance\ =\ Balance\ +\ @Amount\ WHERE\ AccountNumber\ =\ @To"{}};}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ con);}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Amount"{}},\ Amount);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@To"{}},\ To);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Transaction\ =\ transaction;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.ExecuteNonQuery();}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ Transactions\ (SenderId,\ ReceiverId,\ Amount,\ SentAt)\ VALUES\ (@From,\ @To,\ @Amount,\ @SentAt)"{}};}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ con);}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@From"{}},\ fromAccount!.Id);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@To"{}},\ toAccount!.Id);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Amount"{}},\ Amount);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@SentAt"{}},\ DateTime.Now);}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.Transaction\ =\ transaction;}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd.ExecuteNonQuery();}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Commit();}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Rollback();}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{public}\ IList<RolesModel>\ GetRolesById(\textcolor{keywordtype}{int}\ uid)}
+\DoxyCodeLine{00303\ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ var\ roles\ =\ \textcolor{keyword}{new}\ List<RolesModel>();}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ [UserRoles].Id,\ [UserRoles].RoleName,\ [UserRoles].UserId\ FROM\ [UserRoles]\ WHERE\ [UserRoles].UserId\ =\ @Id"{}};}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ uid);}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ roles.Add(\textcolor{keyword}{new}\ RolesModel}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(0),}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RoleName\ =\ reader.GetString(1),}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UserId\ =\ reader.GetInt32(2)}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ roles;}
+\DoxyCodeLine{00321\ \ \ \ \ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keyword}{public}\ IList<BankAccountModel>\ GetAllBankAccounts()}
+\DoxyCodeLine{00328\ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ var\ accounts\ =\ \textcolor{keyword}{new}\ List<BankAccountModel>();}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ Id,\ AccountNumber,\ Balance,\ UserId\ FROM\ BankAccount"{}};}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ accounts.Add(\textcolor{keyword}{new}\ BankAccountModel}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(0),}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AccountNumber\ =\ reader.GetString(1),}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Balance\ =\ reader.GetDecimal(2),}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UserId\ =\ reader.GetInt32(3)}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ var\ users\ =\ GetUsers();}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ account\ \textcolor{keywordflow}{in}\ accounts)}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ account.User\ =\ users.First(u\ =>\ u.Id\ ==\ account.UserId);}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ accounts;}
+\DoxyCodeLine{00353\ \ \ \ \ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddFunds(Guid\ guid,\ decimal\ amount)}
+\DoxyCodeLine{00361\ \ \ \ \ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ BankAccount\ SET\ Balance\ =\ Balance\ +\ @Amount\ WHERE\ AccountNumber\ =\ @AccountNumber"{}};}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Amount"{}},\ amount);}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@AccountNumber"{}},\ guid);}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ cmd.ExecuteNonQuery();}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keyword}{public}\ IList<TransactionModel>\ GetTransactions()}
+\DoxyCodeLine{00375\ \ \ \ \ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ Id,\ SenderId,\ ReceiverId,\ Amount,\ SentAt\ FROM\ Transactions"{}};}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ var\ transactions\ =\ \textcolor{keyword}{new}\ List<TransactionModel>();}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ transactions.Add(\textcolor{keyword}{new}\ TransactionModel}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(reader.GetOrdinal(\textcolor{stringliteral}{"{}Id"{}})),}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SenderId\ =\ reader.GetInt32(reader.GetOrdinal(\textcolor{stringliteral}{"{}SenderId"{}})),}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReceiverId\ =\ reader.GetInt32(reader.GetOrdinal(\textcolor{stringliteral}{"{}ReceiverId"{}})),}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Amount\ =\ reader.GetDecimal(reader.GetOrdinal(\textcolor{stringliteral}{"{}Amount"{}})),}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SentAt\ =\ reader.GetDateTime(reader.GetOrdinal(\textcolor{stringliteral}{"{}SentAt"{}}))}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ reader.Close();}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ transaction\ \textcolor{keywordflow}{in}\ transactions)}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Sender\ =\ GetBankAccountByAccountId(transaction.SenderId);}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Receiver\ =\ GetBankAccountByAccountId(transaction.ReceiverId);}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ transactions;}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keyword}{public}\ IList<TransactionModel>\ GetTransactions(\textcolor{keywordtype}{int}\ uid)}
+\DoxyCodeLine{00412\ \ \ \ \ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ Id,\ SenderId,\ ReceiverId,\ Amount,\ SentAt\ FROM\ Transactions\ WHERE\ SenderId\ =\ @Id\ OR\ ReceiverId\ =\ @Id"{}};}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection);}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ cmd.Parameters.AddWithValue(\textcolor{stringliteral}{"{}@Id"{}},\ uid);}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ var\ transactions\ =\ \textcolor{keyword}{new}\ List<TransactionModel>();}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ var\ reader\ =\ cmd.ExecuteReader();}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (reader.Read())}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ transactions.Add(\textcolor{keyword}{new}\ TransactionModel}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Id\ =\ reader.GetInt32(reader.GetOrdinal(\textcolor{stringliteral}{"{}Id"{}})),}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SenderId\ =\ reader.GetInt32(reader.GetOrdinal(\textcolor{stringliteral}{"{}SenderId"{}})),}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReceiverId\ =\ reader.GetInt32(reader.GetOrdinal(\textcolor{stringliteral}{"{}ReceiverId"{}})),}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Amount\ =\ reader.GetDecimal(reader.GetOrdinal(\textcolor{stringliteral}{"{}Amount"{}})),}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SentAt\ =\ reader.GetDateTime(reader.GetOrdinal(\textcolor{stringliteral}{"{}SentAt"{}}))}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ reader.Close();}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ transaction\ \textcolor{keywordflow}{in}\ transactions)}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Sender\ =\ GetBankAccountByAccountId(transaction.SenderId);}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ transaction.Receiver\ =\ GetBankAccountByAccountId(transaction.ReceiverId);}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ transactions;}
+\DoxyCodeLine{00443\ \ \ \ \ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ Ping()}
+\DoxyCodeLine{00451\ \ \ \ \ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ var\ sql\ =\ \textcolor{stringliteral}{"{}SELECT\ 1"{}};}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{using}\ (var\ cmd\ =\ \textcolor{keyword}{new}\ SqlCommand(sql,\ \_connection))}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ response\ =\ cmd.ExecuteScalar();}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ if\ the\ response\ is\ 1}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (response\ is\ \textcolor{keywordtype}{int}\ i\ \&\&\ i\ ==\ 1)}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ e)}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00475\ \ \ \ \ \}}
+\DoxyCodeLine{00476\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,357 @@
+\doxysection{Bank\+Web\+App.\+Services.\+Database\+Service Class Reference}
+\label{class_bank_web_app_1_1_services_1_1_database_service}\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+
+
+The Database\+Service class is responsible for managing the database operations. It contains methods for getting users, checking if a username exists, registering a user, getting bank accounts by user id, transferring funds, getting roles by user id, getting all bank accounts, adding funds, and getting transactions.  
+
+
+Inheritance diagram for Bank\+Web\+App.\+Services.\+Database\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_bank_web_app_1_1_services_1_1_database_service}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Database\+Service} ()
+\begin{DoxyCompactList}\small\item\em The constructor initializes a new instance of the Database\+Service class. It sets the connection string and opens the connection. \end{DoxyCompactList}\item 
+void \textbf{ Dispose} ()
+\begin{DoxyCompactList}\small\item\em The Dispose method is called when the Database\+Service object is being disposed. It closes the database connection. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ User\+Model} $>$ \textbf{ Get\+Users} ()
+\begin{DoxyCompactList}\small\item\em Gets all users from the database. \end{DoxyCompactList}\item 
+bool \textbf{ Username\+Exists} (string \+\_\+username)
+\begin{DoxyCompactList}\small\item\em Gets all users from the database. \end{DoxyCompactList}\item 
+bool \textbf{ Register\+User} (\textbf{ User\+Model} user)
+\begin{DoxyCompactList}\small\item\em Registers a new user in the database. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ Bank\+Account\+Model} $>$? \textbf{ Get\+Bank\+Account\+By\+Id} (int User\+Id)
+\begin{DoxyCompactList}\small\item\em Gets a list of bank accounts by user id. \end{DoxyCompactList}\item 
+\textbf{ Bank\+Account\+Model}? \textbf{ Get\+Bank\+Account\+By\+Id} (string Id)
+\begin{DoxyCompactList}\small\item\em Gets a bank account by account number. \end{DoxyCompactList}\item 
+\textbf{ Bank\+Account\+Model}? \textbf{ Get\+Bank\+Account\+By\+Account\+Id} (int Id)
+\begin{DoxyCompactList}\small\item\em Gets a bank account by account id. \end{DoxyCompactList}\item 
+bool \textbf{ Transfer\+Funds} (Guid from, Guid To, decimal Amount)
+\begin{DoxyCompactList}\small\item\em Transfers funds from one account to another. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ Roles\+Model} $>$ \textbf{ Get\+Roles\+By\+Id} (int uid)
+\begin{DoxyCompactList}\small\item\em Gets a list of roles by user id. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ Bank\+Account\+Model} $>$ \textbf{ Get\+All\+Bank\+Accounts} ()
+\begin{DoxyCompactList}\small\item\em Gets all bank accounts from the database. \end{DoxyCompactList}\item 
+void \textbf{ Add\+Funds} (Guid guid, decimal amount)
+\begin{DoxyCompactList}\small\item\em Adds funds to a bank account. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ Transaction\+Model} $>$ \textbf{ Get\+Transactions} ()
+\begin{DoxyCompactList}\small\item\em Gets all transactions from the database. \end{DoxyCompactList}\item 
+IList$<$ \textbf{ Transaction\+Model} $>$ \textbf{ Get\+Transactions} (int uid)
+\begin{DoxyCompactList}\small\item\em Gets a list of transactions by user id. \end{DoxyCompactList}\item 
+bool \textbf{ Ping} ()
+\begin{DoxyCompactList}\small\item\em A helper method for checking if the database is alive. Mainly used for health checks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The Database\+Service class is responsible for managing the database operations. It contains methods for getting users, checking if a username exists, registering a user, getting bank accounts by user id, transferring funds, getting roles by user id, getting all bank accounts, adding funds, and getting transactions. 
+
+Definition at line \textbf{ 10} of file \textbf{ Database\+Service.\+cs}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_afb644700390d0dc2fb73170a71e75503}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!DatabaseService@{DatabaseService}}
+\index{DatabaseService@{DatabaseService}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{DatabaseService()}
+{\footnotesize\ttfamily Bank\+Web\+App.\+Services.\+Database\+Service.\+Database\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The constructor initializes a new instance of the Database\+Service class. It sets the connection string and opens the connection. 
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ Database\+Service.\+cs}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_ae9c753a910b4194f006d3112a70a4b52}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!AddFunds@{AddFunds}}
+\index{AddFunds@{AddFunds}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{AddFunds()}
+{\footnotesize\ttfamily void Bank\+Web\+App.\+Services.\+Database\+Service.\+Add\+Funds (\begin{DoxyParamCaption}\item[{Guid}]{guid,  }\item[{decimal}]{amount }\end{DoxyParamCaption})}
+
+
+
+Adds funds to a bank account. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em guid} & The account number to add funds to.\\
+\hline
+{\em amount} & The amount to add.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 360} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_af9eb0c47c7aca1c5bf6c7e9446589d6d}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{Dispose()}
+{\footnotesize\ttfamily void Bank\+Web\+App.\+Services.\+Database\+Service.\+Dispose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Dispose method is called when the Database\+Service object is being disposed. It closes the database connection. 
+
+
+
+Definition at line \textbf{ 54} of file \textbf{ Database\+Service.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_a4e4d30a88895a3f051bca3aae69ac076}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!GetAllBankAccounts@{GetAllBankAccounts}}
+\index{GetAllBankAccounts@{GetAllBankAccounts}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{GetAllBankAccounts()}
+{\footnotesize\ttfamily IList$<$ \textbf{ Bank\+Account\+Model} $>$ Bank\+Web\+App.\+Services.\+Database\+Service.\+Get\+All\+Bank\+Accounts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all bank accounts from the database. 
+
+\begin{DoxyReturn}{Returns}
+A list of Bank\+Account\+Model objects.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 327} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_aa952c695b831ccb1639cd6e3c2323444}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!GetBankAccountByAccountId@{GetBankAccountByAccountId}}
+\index{GetBankAccountByAccountId@{GetBankAccountByAccountId}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{GetBankAccountByAccountId()}
+{\footnotesize\ttfamily \textbf{ Bank\+Account\+Model}? Bank\+Web\+App.\+Services.\+Database\+Service.\+Get\+Bank\+Account\+By\+Account\+Id (\begin{DoxyParamCaption}\item[{int}]{Id }\end{DoxyParamCaption})}
+
+
+
+Gets a bank account by account id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Id} & The account id to get the bank account for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Bank\+Account\+Model object.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 213} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_a151b5854e357a5542c6e06a96e30bb58}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!GetBankAccountById@{GetBankAccountById}}
+\index{GetBankAccountById@{GetBankAccountById}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{GetBankAccountById()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily IList$<$ \textbf{ Bank\+Account\+Model} $>$? Bank\+Web\+App.\+Services.\+Database\+Service.\+Get\+Bank\+Account\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{User\+Id }\end{DoxyParamCaption})}
+
+
+
+Gets a list of bank accounts by user id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em User\+Id} & The user id to get the bank accounts for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of Bank\+Account\+Model objects.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 142} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_a9fecfc72abfb7fc96a5fe5b691cc7116}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!GetBankAccountById@{GetBankAccountById}}
+\index{GetBankAccountById@{GetBankAccountById}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{GetBankAccountById()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \textbf{ Bank\+Account\+Model}? Bank\+Web\+App.\+Services.\+Database\+Service.\+Get\+Bank\+Account\+By\+Id (\begin{DoxyParamCaption}\item[{string}]{Id }\end{DoxyParamCaption})}
+
+
+
+Gets a bank account by account number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Id} & The account number to get the bank account for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Bank\+Account\+Model object.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 179} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_a3b939bb93b07b788da2cbfde5c6ab920}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!GetRolesById@{GetRolesById}}
+\index{GetRolesById@{GetRolesById}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{GetRolesById()}
+{\footnotesize\ttfamily IList$<$ \textbf{ Roles\+Model} $>$ Bank\+Web\+App.\+Services.\+Database\+Service.\+Get\+Roles\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{uid }\end{DoxyParamCaption})}
+
+
+
+Gets a list of roles by user id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & The user id to get the roles for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of Roles\+Model objects.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 302} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_ad6eae550bc6e29e16bcf2ee7271a6210}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!GetTransactions@{GetTransactions}}
+\index{GetTransactions@{GetTransactions}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{GetTransactions()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily IList$<$ \textbf{ Transaction\+Model} $>$ Bank\+Web\+App.\+Services.\+Database\+Service.\+Get\+Transactions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all transactions from the database. 
+
+\begin{DoxyReturn}{Returns}
+A list of Transaction\+Model objects.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 374} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_a0fa5df5d9ca68a0924a905669e45a38d}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!GetTransactions@{GetTransactions}}
+\index{GetTransactions@{GetTransactions}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{GetTransactions()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily IList$<$ \textbf{ Transaction\+Model} $>$ Bank\+Web\+App.\+Services.\+Database\+Service.\+Get\+Transactions (\begin{DoxyParamCaption}\item[{int}]{uid }\end{DoxyParamCaption})}
+
+
+
+Gets a list of transactions by user id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & The user id to get the transactions for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of Transaction\+Model objects.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 411} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_a0e161b45d489f9e9552b75ad93325a9f}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!GetUsers@{GetUsers}}
+\index{GetUsers@{GetUsers}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{GetUsers()}
+{\footnotesize\ttfamily IList$<$ \textbf{ User\+Model} $>$ Bank\+Web\+App.\+Services.\+Database\+Service.\+Get\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all users from the database. 
+
+\begin{DoxyReturn}{Returns}
+A list of User\+Model objects.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 19} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_a2c4d4904b195e56a2173d5d85397fef4}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!Ping@{Ping}}
+\index{Ping@{Ping}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{Ping()}
+{\footnotesize\ttfamily bool Bank\+Web\+App.\+Services.\+Database\+Service.\+Ping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A helper method for checking if the database is alive. Mainly used for health checks. 
+
+\begin{DoxyReturn}{Returns}
+True if the database is alive, false otherwise.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 450} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_aeab7003b6483d1e2abd726a8e6726f9b}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!RegisterUser@{RegisterUser}}
+\index{RegisterUser@{RegisterUser}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{RegisterUser()}
+{\footnotesize\ttfamily bool Bank\+Web\+App.\+Services.\+Database\+Service.\+Register\+User (\begin{DoxyParamCaption}\item[{\textbf{ User\+Model}}]{user }\end{DoxyParamCaption})}
+
+
+
+Registers a new user in the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user to register.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the registration was successful, false otherwise.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 76} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_a5e519b6b95924ae8eea1baa1066a5174}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!TransferFunds@{TransferFunds}}
+\index{TransferFunds@{TransferFunds}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{TransferFunds()}
+{\footnotesize\ttfamily bool Bank\+Web\+App.\+Services.\+Database\+Service.\+Transfer\+Funds (\begin{DoxyParamCaption}\item[{Guid}]{from,  }\item[{Guid}]{To,  }\item[{decimal}]{Amount }\end{DoxyParamCaption})}
+
+
+
+Transfers funds from one account to another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from} & The account number to transfer funds from.\\
+\hline
+{\em To} & The account number to transfer funds to.\\
+\hline
+{\em Amount} & The amount to transfer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the transfer was successful, false otherwise.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 251} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_services_1_1_database_service_af5bfe68697cb5aebfcdec087800d08b9}} 
+\index{BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}!UsernameExists@{UsernameExists}}
+\index{UsernameExists@{UsernameExists}!BankWebApp.Services.DatabaseService@{BankWebApp.Services.DatabaseService}}
+\doxysubsubsection{UsernameExists()}
+{\footnotesize\ttfamily bool Bank\+Web\+App.\+Services.\+Database\+Service.\+Username\+Exists (\begin{DoxyParamCaption}\item[{string}]{\+\_\+username }\end{DoxyParamCaption})}
+
+
+
+Gets all users from the database. 
+
+\begin{DoxyReturn}{Returns}
+A list of User\+Model objects.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 61} of file \textbf{ Database\+Service\+Functions.\+cs}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/tomas/source/repos/\+Bank\+Web\+App/\+Services/\textbf{ Database\+Service.\+cs}\item 
+C\+:/\+Users/tomas/source/repos/\+Bank\+Web\+App/\+Services/\textbf{ Database\+Service\+Functions.\+cs}\end{DoxyCompactItemize}

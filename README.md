@@ -15,8 +15,7 @@ The project is structured into several parts:
 ## Setup
 
 1. Clone the repository.
-2. Ensure that you have docker installed.
-3. Ensure that you have docker-compose installed.
+2. Ensure that docker & docker-compose is installed.
 4. Run `docker-compose up -d` to start the application.
 5. Enjoy!.
 
@@ -25,7 +24,7 @@ The project is structured into several parts:
 1. Open the login page
 2. Enter the following credentials:
    - Username: `admin`
-   - Password: `admin`
+   - Password: &nbsp;`admin`
 3. Login.
 4. Admin tools can be accessed by clicking the new buttons in the navbar.
 
@@ -47,6 +46,15 @@ The project is structured into several parts:
 - Transaction history
 - Admin dashboard
 - User dashboard
+- Automatic health Checks
+- Automatic docker health checks
+
+## API Endpoints
+
+- `/api/healthcheck/all` - Returns the health status of all services and also an overall health status.
+- `/api/healthcheck/database` - Returns the health status of the database.
+- `/api/healthcheck/disk` - Returns if the disk has enough space.
+- `/api/healthcheck/ram` - Returns if the RAM has enough space.
 
 ## Database Diagram
 

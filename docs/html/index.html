@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Fake Bank: Main Page</title>
+<title>Fake bank: BankWebApp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Fake Bank
+   <div id="projectname">Fake bank
    </div>
+   <div id="projectbrief">An app that implements basic e-bank functions</div>
   </td>
  </tr>
  </tbody>
@@ -88,10 +89,92 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Fake Bank Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title"><a class="el" href="namespace_bank_web_app.html">BankWebApp</a> </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_C__Users_tomas_source_repos_BankWebApp_README"></a> This is a banking web application developed using C#, JavaScript, and SQL.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Project Structure</h1>
+<p>The project is structured into several parts:</p>
+<ul>
+<li><code><a class="el" href="_envs_8cs.html">env/Envs.cs</a></code>: Contains the connection string for the MSSQL database.</li>
+<li><code>database.sql</code>: Contains the SQL scripts for creating the necessary tables and indices in the database.</li>
+<li><code>wwwroot/</code>: Contains the static files for the web application. (js css images)</li>
+<li><code>docs/</code>: Contains the documentation for the project.</li>
+<li><code>BankDB-data/</code>: Contains the data for the MSSQL database.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Setup</h1>
+<ol type="1">
+<li>Clone the repository.</li>
+<li>Ensure that docker &amp; docker-compose is installed.</li>
+<li>Run <code>docker-compose up -d</code> to start the application.</li>
+<li>Enjoy!.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md3"></a>
+How to login to an admin account</h1>
+<ol type="1">
+<li>Open the login page</li>
+<li>Enter the following credentials:<ul>
+<li>Username: <code>admin</code></li>
+<li>Password: &#160;<code>admin</code></li>
+</ul>
+</li>
+<li>Login.</li>
+<li>Admin tools can be accessed by clicking the new buttons in the navbar.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md4"></a>
+How to add admin access to a new user</h1>
+<ol type="1">
+<li>Register a new user.</li>
+<li>Open the database insert a new row into <code>UserRoles</code> table</li>
+<li>Set the <code>UserId</code> to the <code>Id</code> of the user you want to make admin.</li>
+<li>Set the <code>RoleName</code> to <code>Admin</code>.</li>
+<li>Save the changes.</li>
+<li>The user should now have admin access.</li>
+<li>Admin tools can be accessed by clicking the new buttons in the navbar.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Features</h1>
+<ul>
+<li>User registration and login</li>
+<li>Bank account creation</li>
+<li>Transaction processing</li>
+<li>Transaction history</li>
+<li>Admin dashboard</li>
+<li>User dashboard</li>
+<li>Automatic health Checks</li>
+<li>Automatic docker health checks</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md6"></a>
+API Endpoints</h1>
+<ul>
+<li><code>/api/healthcheck/all</code> - Returns the health status of all services and also an overall health status.</li>
+<li><code>/api/healthcheck/database</code> - Returns the health status of the database.</li>
+<li><code>/api/healthcheck/disk</code> - Returns if the disk has enough space.</li>
+<li><code>/api/healthcheck/ram</code> - Returns if the RAM has enough space.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Database Diagram</h1>
+<p><img src="./docs/FakeBankDiagram.png" alt="Database Diagram" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Custom User Components</h1>
+<ul>
+<li><code>Navbar</code>: The navigation bar at the top of the page. made with View Component.</li>
+<li><code>Footer</code>: The footer at the bottom of the page. made with Partial View.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Documentation</h1>
+<p>The documentation for this project is available in the <code>docs</code> folder. Files in the <code>docs</code> folder are generated using doxygen.</p>
+<p>Available versions of the documentation:</p>
+<ul>
+<li><a href="./docs/documentation.pdf">PDF Documentation</a>&#160;&#160;&#160;&#160;(same as the rtf version)</li>
+<li><a href="./docs/rtf/refman.rtf">RTF Documentation</a>&#160;&#160;&#160;&#160;(same as the pdf version, may give warnings about being unsafe)</li>
+<li><a href="https://docs.tomas-moravec.dev/prg-prvni-pololetni-projekt/">HTML Documentation</a>&#160;(best version, but requires a browser to view)</li>
+<li>Code Comments&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(in the source code) </li>
+</ul>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

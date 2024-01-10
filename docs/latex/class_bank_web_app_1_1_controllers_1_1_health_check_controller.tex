@@ -1,0 +1,137 @@
+\doxysection{Bank\+Web\+App.\+Controllers.\+Health\+Check\+Controller Class Reference}
+\label{class_bank_web_app_1_1_controllers_1_1_health_check_controller}\index{BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}}
+
+
+Controller for handling health checks of the application.  
+
+
+Inheritance diagram for Bank\+Web\+App.\+Controllers.\+Health\+Check\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_bank_web_app_1_1_controllers_1_1_health_check_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Health\+Check\+Controller} (ILogger$<$ \textbf{ Health\+Check\+Controller} $>$ logger, \textbf{ Database\+Health\+Service} db\+Service, \textbf{ Disk\+Health\+Service} disk\+Service, \textbf{ Memory\+Health\+Service} memory\+Service)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the Health\+Check\+Controller class. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \textbf{ All} ()
+\begin{DoxyCompactList}\small\item\em Gets the health status of all components. If any component is unhealthy, the overall status will be unhealthy. If any component is degraded, the overall status will be degraded. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \textbf{ Database} ()
+\begin{DoxyCompactList}\small\item\em Gets the health status of the database. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \textbf{ Disk} ()
+\begin{DoxyCompactList}\small\item\em Gets the health status of the disk. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \textbf{ RAM} ()
+\begin{DoxyCompactList}\small\item\em Gets the health status of the RAM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controller for handling health checks of the application. 
+
+Definition at line \textbf{ 12} of file \textbf{ Health\+Check\+Controller.\+cs}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_health_check_controller_a14a0208712e545a9b36759b1165cb9f4}} 
+\index{BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}!HealthCheckController@{HealthCheckController}}
+\index{HealthCheckController@{HealthCheckController}!BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}}
+\doxysubsubsection{HealthCheckController()}
+{\footnotesize\ttfamily Bank\+Web\+App.\+Controllers.\+Health\+Check\+Controller.\+Health\+Check\+Controller (\begin{DoxyParamCaption}\item[{ILogger$<$ \textbf{ Health\+Check\+Controller} $>$}]{logger,  }\item[{\textbf{ Database\+Health\+Service}}]{db\+Service,  }\item[{\textbf{ Disk\+Health\+Service}}]{disk\+Service,  }\item[{\textbf{ Memory\+Health\+Service}}]{memory\+Service }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the Health\+Check\+Controller class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em logger} & The logger used to log information about program execution.\\
+\hline
+{\em db\+Service} & The service used to check the health of the database.\\
+\hline
+{\em disk\+Service} & The service used to check the health of the disk.\\
+\hline
+{\em memory\+Service} & The service used to check the health of the memory.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 29} of file \textbf{ Health\+Check\+Controller.\+cs}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_health_check_controller_acb7726a2cef3972ba0cd95f7ed288aee}} 
+\index{BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}!All@{All}}
+\index{All@{All}!BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}}
+\doxysubsubsection{All()}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Bank\+Web\+App.\+Controllers.\+Health\+Check\+Controller.\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the health status of all components. If any component is unhealthy, the overall status will be unhealthy. If any component is degraded, the overall status will be degraded. 
+
+\begin{DoxyReturn}{Returns}
+The health status of all components as a JSON object.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 48} of file \textbf{ Health\+Check\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_health_check_controller_af8086fe1a973059062d5546cdffae682}} 
+\index{BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}!Database@{Database}}
+\index{Database@{Database}!BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}}
+\doxysubsubsection{Database()}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Bank\+Web\+App.\+Controllers.\+Health\+Check\+Controller.\+Database (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the health status of the database. 
+
+\begin{DoxyReturn}{Returns}
+The health status of the database as a JSON object.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 109} of file \textbf{ Health\+Check\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_health_check_controller_a8a53b3c033e4d66096e13d451d699639}} 
+\index{BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}!Disk@{Disk}}
+\index{Disk@{Disk}!BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}}
+\doxysubsubsection{Disk()}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Bank\+Web\+App.\+Controllers.\+Health\+Check\+Controller.\+Disk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the health status of the disk. 
+
+\begin{DoxyReturn}{Returns}
+The health status of the disk as a JSON object.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 119} of file \textbf{ Health\+Check\+Controller.\+cs}.
+
+\mbox{\label{class_bank_web_app_1_1_controllers_1_1_health_check_controller_a8ac024fb469eb481b922bdc289370972}} 
+\index{BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}!RAM@{RAM}}
+\index{RAM@{RAM}!BankWebApp.Controllers.HealthCheckController@{BankWebApp.Controllers.HealthCheckController}}
+\doxysubsubsection{RAM()}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Bank\+Web\+App.\+Controllers.\+Health\+Check\+Controller.\+RAM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the health status of the RAM. 
+
+\begin{DoxyReturn}{Returns}
+The health status of the RAM as a JSON object.
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 129} of file \textbf{ Health\+Check\+Controller.\+cs}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/tomas/source/repos/\+Bank\+Web\+App/\+Controllers/\textbf{ Health\+Check\+Controller.\+cs}\end{DoxyCompactItemize}

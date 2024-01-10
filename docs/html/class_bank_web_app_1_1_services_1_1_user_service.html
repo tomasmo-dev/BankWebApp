@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Fake Bank: BankWebApp.Services.UserService Class Reference</title>
+<title>Fake bank: BankWebApp.Services.UserService Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Fake Bank
+   <div id="projectname">Fake bank
    </div>
+   <div id="projectbrief">An app that implements basic e-bank functions</div>
   </td>
  </tr>
  </tbody>
@@ -102,9 +103,8 @@ $(document).ready(function(){initNavTree('class_bank_web_app_1_1_services_1_1_us
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9fc67db4d0af6d885894c1926c1389d1"><td class="memItemLeft" align="right" valign="top"><a id="a9fc67db4d0af6d885894c1926c1389d1" name="a9fc67db4d0af6d885894c1926c1389d1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UserService</b> ()</td></tr>
-<tr class="memdesc:a9fc67db4d0af6d885894c1926c1389d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for UserService. Initializes a new instance of the DatabaseService and refreshes the cache. <br /></td></tr>
+<tr class="memitem:a9fc67db4d0af6d885894c1926c1389d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_user_service.html#a9fc67db4d0af6d885894c1926c1389d1">UserService</a> ()</td></tr>
+<tr class="memdesc:a9fc67db4d0af6d885894c1926c1389d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for UserService. Initializes a new instance of the DatabaseService and refreshes the cache.  <br /></td></tr>
 <tr class="separator:a9fc67db4d0af6d885894c1926c1389d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4625be89edce039e046907beb9a4b37"><td class="memItemLeft" align="right" valign="top">IList&lt; <a class="el" href="class_bank_web_app_1_1_models_1_1_user_model.html">UserModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_user_service.html#ad4625be89edce039e046907beb9a4b37">GetUsers</a> ()</td></tr>
 <tr class="memdesc:ad4625be89edce039e046907beb9a4b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the list of users. If the cache is null or expired, it refreshes the cache before returning the users.  <br /></td></tr>
@@ -115,8 +115,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a293d7161740f5f49e3e37a692a2b5d4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_bank_web_app_1_1_models_1_1_user_model.html">UserModel</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_user_service.html#a293d7161740f5f49e3e37a692a2b5d4f">GetUserByUsername</a> (string username)</td></tr>
 <tr class="memdesc:a293d7161740f5f49e3e37a692a2b5d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a user by their username.  <br /></td></tr>
 <tr class="separator:a293d7161740f5f49e3e37a692a2b5d4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fa92d1ed2132cba88e364ea649a9eeb"><td class="memItemLeft" align="right" valign="top"><a id="a7fa92d1ed2132cba88e364ea649a9eeb" name="a7fa92d1ed2132cba88e364ea649a9eeb"></a>
-bool string reason&#160;</td><td class="memItemRight" valign="bottom"><b>RegisterUser</b> (<a class="el" href="class_bank_web_app_1_1_models_1_1_register_model.html">RegisterModel</a> newUser)</td></tr>
+<tr class="memitem:a7fa92d1ed2132cba88e364ea649a9eeb"><td class="memItemLeft" align="right" valign="top">bool string reason&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_user_service.html#a7fa92d1ed2132cba88e364ea649a9eeb">RegisterUser</a> (<a class="el" href="class_bank_web_app_1_1_models_1_1_register_model.html">RegisterModel</a> newUser)</td></tr>
 <tr class="separator:a7fa92d1ed2132cba88e364ea649a9eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4828ca2089810646bce1599e0e6d06de"><td class="memItemLeft" align="right" valign="top">IList&lt; <a class="el" href="class_bank_web_app_1_1_models_1_1_bank_account_model.html">BankAccountModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bank_web_app_1_1_services_1_1_user_service.html#a4828ca2089810646bce1599e0e6d06de">GetBankAccountsById</a> (int uid)</td></tr>
 <tr class="memdesc:a4828ca2089810646bce1599e0e6d06de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the bank accounts of a user by their ID.  <br /></td></tr>
@@ -145,7 +144,31 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Service class for managing users. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00009">9</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9fc67db4d0af6d885894c1926c1389d1" name="a9fc67db4d0af6d885894c1926c1389d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fc67db4d0af6d885894c1926c1389d1">&#9670;&#160;</a></span>UserService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BankWebApp.Services.UserService.UserService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for UserService. Initializes a new instance of the DatabaseService and refreshes the cache. </p>
+
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00026">26</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="adf99ee1973eae3308f58c5253f6c69a5" name="adf99ee1973eae3308f58c5253f6c69a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adf99ee1973eae3308f58c5253f6c69a5">&#9670;&#160;</a></span>GetAllBankAccounts()</h2>
 
@@ -163,6 +186,8 @@ Public Attributes</h2></td></tr>
 
 <p>Retrieves all bank accounts. </p>
 <dl class="section return"><dt>Returns</dt><dd>A list of all bank accounts.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00153">153</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
 
 </div>
 </div>
@@ -183,6 +208,8 @@ Public Attributes</h2></td></tr>
 
 <p>Retrieves all transactions. </p>
 <dl class="section return"><dt>Returns</dt><dd>A list of all transactions.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00172">172</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
 
 </div>
 </div>
@@ -211,6 +238,8 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A list of bank accounts owned by the user.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00134">134</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
+
 </div>
 </div>
 <a id="a6611908d12d3574610a9b5f189b0add7" name="a6611908d12d3574610a9b5f189b0add7"></a>
@@ -237,6 +266,8 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The bank account with the given account number, or null if no such account exists.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00144">144</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
 
 </div>
 </div>
@@ -265,6 +296,8 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A list of roles assigned to the user.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00163">163</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
+
 </div>
 </div>
 <a id="a8a6df684e1ea8bb5c222f79acbb56a4d" name="a8a6df684e1ea8bb5c222f79acbb56a4d"></a>
@@ -291,6 +324,8 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A list of transactions associated with the bank account.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00182">182</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
 
 </div>
 </div>
@@ -319,6 +354,8 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The user with the given ID, or null if no such user exists.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00060">60</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
+
 </div>
 </div>
 <a id="a293d7161740f5f49e3e37a692a2b5d4f" name="a293d7161740f5f49e3e37a692a2b5d4f"></a>
@@ -346,6 +383,8 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The user with the given username, or null if no such user exists.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00070">70</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
+
 </div>
 </div>
 <a id="ad4625be89edce039e046907beb9a4b37" name="ad4625be89edce039e046907beb9a4b37"></a>
@@ -365,6 +404,28 @@ Public Attributes</h2></td></tr>
 
 <p>Retrieves the list of users. If the cache is null or expired, it refreshes the cache before returning the users. </p>
 <dl class="section return"><dt>Returns</dt><dd>A list of UserModel instances.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00036">36</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7fa92d1ed2132cba88e364ea649a9eeb" name="a7fa92d1ed2132cba88e364ea649a9eeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fa92d1ed2132cba88e364ea649a9eeb">&#9670;&#160;</a></span>RegisterUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool string reason BankWebApp.Services.UserService.RegisterUser </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_bank_web_app_1_1_models_1_1_register_model.html">RegisterModel</a>&#160;</td>
+          <td class="paramname"><em>newUser</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00080">80</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
 
 </div>
 </div>
@@ -390,10 +451,12 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A tuple indicating whether the registration was successful and a reason for failure, if applicable.</dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_user_service_8cs_source.html#l00080">80</a> of file <a class="el" href="_user_service_8cs_source.html">UserService.cs</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Services/UserService.cs</li>
+<li>C:/Users/tomas/source/repos/BankWebApp/Services/<a class="el" href="_user_service_8cs_source.html">UserService.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
