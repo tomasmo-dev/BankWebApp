@@ -9,14 +9,15 @@ The project is structured into several parts:
 - `env/Envs.cs`: Contains the connection string for the MSSQL database.
 - `database.sql`: Contains the SQL scripts for creating the necessary tables and indices in the database.
 - `wwwroot/`: Contains the static files for the web application. (js css images)
-- 
+- `docs/`: Contains the documentation for the project.
+- `BankDB-data/`: Contains the data for the MSSQL database.
 
 ## Setup
 
 1. Clone the repository.
 2. Ensure that you have docker installed.
-2. Ensure that you have docker-compose installed.
-3. Run `docker-compose up -d` to start the application.
+3. Ensure that you have docker-compose installed.
+4. Run `docker-compose up -d` to start the application.
 5. Enjoy!.
 
 ## How to login to an admin account
@@ -65,5 +66,5 @@ Available versions of the documentation:
 
 - [PDF Documentation](./docs/documentation.pdf)&nbsp;&nbsp;&nbsp;&nbsp;(same as the rtf version)
 - [RTF Documentation](./docs/rtf/refman.rtf)&nbsp;&nbsp;&nbsp;&nbsp;(same as the pdf version, may give warnings about being unsafe)
-- [HTML Documentation](./docs/html/index.html)&nbsp;(best version, but requires a browser to view)
+- [HTML Documentation](https://docs.tomas-moravec.dev/prg-prvni-pololetni-projekt/)&nbsp;(best version, but requires a browser to view)
 - Code Comments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(in the source code)
